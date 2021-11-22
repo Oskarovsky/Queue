@@ -1,41 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-
-    <LinearLayout
+    <Button
+        android:id="@+id/btnUploadData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginHorizontal="8dp"
+        app:layout_constraintVertical_bias="0.85"
+        android:text="@string/upload_process"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/editTextName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="8dp" />
-        <EditText
-            android:id="@+id/editTextAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:autofillHints="Age"
-            android:inputType="number"
-            android:padding="8dp"
-            android:textColor="@android:color/background_dark" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnReadData"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="3">
-    </LinearLayout>
-
-</LinearLayout>
+        android:text="@string/retrieve_process"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnUploadData"
+        app:layout_constraintStart_toStartOf="@+id/btnUploadData"
+        app:layout_constraintTop_toBottomOf="@+id/btnUploadData" />
+</androidx.constraintlayout.widget.ConstraintLayout>
