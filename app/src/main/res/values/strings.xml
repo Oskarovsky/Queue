@@ -2,4 +2,14 @@
     <string name="upload_process">Upload process</string>
     <string name="retrieve_process">Retrieve process</string>
     <string name="app_name">Queue App</string>
+
+
+    <string name="lets_get_started_text">Lets get started text information</string>
+
+    <string name="intro_text_description">Here weill be short description text</string>
+
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+
+
 </resources>
