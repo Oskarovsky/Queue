@@ -1,4 +1,5 @@
 <resources>
     <string name="upload_process">Upload process</string>
     <string name="retrieve_process">Retrieve process</string>
+    <string name="app_name">Queue App</string>
 </resources>
