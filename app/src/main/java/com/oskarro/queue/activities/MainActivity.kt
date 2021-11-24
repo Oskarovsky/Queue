@@ -1,61 +1,70 @@
 package com.oskarro.queue.activities
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.core.view.GravityCompat
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.oskarro.queue.R
 import com.oskarro.queue.databinding.ActivityMainBinding
-import com.oskarro.queue.firebase.FirebaseUtils
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
-    val TAG = "MyMessage"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        uploadData()
+        setupActionBar()
+        nav_view.setNavigationItemSelectedListener(this)
     }
 
-/*    private fun uploadData() {
-        binding!!.btnUploadData.setOnClickListener {
-
-            // create a dummy data
-            val hashMap = hashMapOf<String, Any>(
-                "code" to "XC12",
-                "description" to "some information about process",
-                "amount" to 10,
-                "stage" to "release"
-            )
-
-            // use the add() method to create a document inside users collection
-            FirebaseUtils().fireStoreDatabase.collection("processes")
-                .add(hashMap)
-                .addOnSuccessListener {
-                    Log.d(TAG, "Added document with ID ${it.id}")
-                }
-                .addOnFailureListener { exception ->
-                    Log.w(TAG, "Error adding document $exception")
-                }
+    private fun setupActionBar() {
+        setSupportActionBar(toolbar_main_activity)
+        toolbar_main_activity.setNavigationIcon(R.drawable.ic_action_navigation_menu)
+        toolbar_main_activity.setNavigationOnClickListener {
+            toggleDrawer()
         }
     }
 
-    private fun readData() {
-        binding!!.btnReadData.setOnClickListener {
-            FirebaseUtils().fireStoreDatabase.collection("users")
-                .get()
-                .addOnSuccessListener { querySnapshot ->
-                    querySnapshot.forEach { document ->
-                        Log.d(TAG, "Read document with ID ${document.id}")
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.w(TAG, "Error getting documents $exception")
-                }
+    private fun toggleDrawer() {
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START)
+        } else {
+            drawer_layout.openDrawer(GravityCompat.START)
         }
-    }*/
+    }
+
+    override fun onBackPressed() {
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START)
+        } else {
+            doubleBackToExit()
+        }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_my_profile -> {
+                Toast.makeText(this@MainActivity, "My Profile", Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_sign_out -> {
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, IntroActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                finish()
+            }
+        }
+        drawer_layout.closeDrawer(GravityCompat.START)
+        return true
+    }
 
 
 }
