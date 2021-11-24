@@ -16,10 +16,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        uploadData()
+//        uploadData()
     }
 
-    private fun uploadData() {
+/*    private fun uploadData() {
         binding!!.btnUploadData.setOnClickListener {
 
             // create a dummy data
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                     Log.w(TAG, "Error getting documents $exception")
                 }
         }
-    }
+    }*/
 
 
 }

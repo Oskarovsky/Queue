@@ -21,5 +21,10 @@
 
     <string name="please_wait">Please wait…</string>
     <string name="please_click_back_again_to_exit">please click back again to exit</string>
+    <string name="no_boards_available">No Boards Available!</string>
+
+    <string name="nav_my_profile">My profile</string>
+    <string name="nav_sign_out">Sign out</string>
+
 
 </resources>
