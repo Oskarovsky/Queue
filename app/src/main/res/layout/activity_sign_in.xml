@@ -38,7 +38,7 @@
             android:text="@string/sign_in_description_text"
             android:textColor="@color/secondary_text_color"
             android:textSize="16sp"
-            android:id="@+id/sign_in_description_tv"/>
+            android:id="@+id/tv_description_sign_in"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                     android:layout_marginEnd="16dp">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/sign_in_email_et"
+                        android:id="@+id/et_email_sign_in"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Email"
@@ -79,7 +79,7 @@
                     android:layout_marginEnd="16dp">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/sign_in_password_et"
+                        android:id="@+id/et_password_sign_in"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/password"
@@ -88,7 +88,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/sign_in_page_btn"
+                    android:id="@+id/btn_sign_in"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

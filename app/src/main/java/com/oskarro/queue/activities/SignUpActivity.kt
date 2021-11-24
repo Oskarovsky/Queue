@@ -1,10 +1,11 @@
 package com.oskarro.queue.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.oskarro.queue.R
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
@@ -29,22 +30,30 @@ class SignUpActivity : BaseActivity() {
         }
         toolbar_sign_up_activity.setNavigationOnClickListener { onBackPressed() }
 
-        sign_up_page_btn.setOnClickListener {
+        btn_page_sign_up.setOnClickListener {
             registerUser()
         }
     }
 
     private fun registerUser() {
-        val name: String = name_et.text.toString().trim { it <= ' ' }
-        val email: String = email_et.text.toString().trim { it <= ' ' }
-        val password: String = password_et.text.toString().trim { it <= ' ' }
+        val name: String = et_name_sign_up.text.toString().trim { it <= ' ' }
+        val email: String = et_email_sign_up.text.toString().trim { it <= ' ' }
+        val password: String = et_password_sign_up.text.toString().trim { it <= ' ' }
 
         if (validateForm(name, email, password)) {
-            Toast.makeText(
-                this@SignUpActivity,
-                "Now we can register a new user",
-                Toast.LENGTH_SHORT
-            ).show()
+            showProgressDialog(resources.getString(R.string.please_wait))
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                hideProgressDialog()
+                if (task.isSuccessful) {
+                    val firebaseUser: FirebaseUser = task.result!!.user!!
+                    val registeredEmail = firebaseUser.email!!
+                    Toast.makeText(this, "$name you have successfully registered email address $registeredEmail", Toast.LENGTH_SHORT).show()
+                    FirebaseAuth.getInstance().signOut()
+                    finish()
+                } else {
+                    Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

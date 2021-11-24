@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.oskarro.queue.databinding.ActivityMainBinding
+import com.oskarro.queue.firebase.FirebaseUtils
 
 class MainActivity : AppCompatActivity() {
 
