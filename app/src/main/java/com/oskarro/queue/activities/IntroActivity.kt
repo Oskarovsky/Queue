@@ -24,5 +24,7 @@ class IntroActivity : BaseActivity() {
         btn_sign_up_intro.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
+
+
     }
 }
