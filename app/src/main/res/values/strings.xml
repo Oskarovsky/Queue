@@ -6,10 +6,10 @@
 
     <string name="lets_get_started_text">Lets get started text information</string>
 
-    <string name="intro_text_description">Here weill be short description text</string>
+    <string name="intro_text_description">Here weill be short description text. New Queue application for flows and processes controlling </string>
 
-    <string name="sign_in">Sign in</string>
-    <string name="sign_up">Sign up</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
 
 
 </resources>
