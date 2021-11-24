@@ -1,4 +1,4 @@
-package com.oskarro.queue
+package com.oskarro.queue.activities
 
 import com.google.firebase.firestore.FirebaseFirestore
 

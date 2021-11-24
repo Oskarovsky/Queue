@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.SignUpActivity">
+    tools:context=".activities.SignInActivity">
+
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_sign_up_activity"
+        android:id="@+id/toolbar_sign_in_activity"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="@string/sign_up"
+            android:text="@string/sign_in"
             android:textColor="@color/primary_text_color"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -35,16 +35,16 @@
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:gravity="center"
-            android:text="Enter your name, email and password to register with us."
+            android:text="@string/sign_in_description_text"
             android:textColor="@color/secondary_text_color"
             android:textSize="16sp"
-            android:id="@+id/sign_up_description_tv"/>
+            android:id="@+id/sign_in_description_tv"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="25dp"
             android:elevation="10dp"
             app:cardCornerRadius="10dp">
@@ -59,13 +59,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="16dp">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/name_et"
+                        android:id="@+id/sign_in_email_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/name"
+                        android:hint="Email"
                         android:inputType="textEmailAddress"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -78,23 +79,7 @@
                     android:layout_marginEnd="16dp">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/email_et"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/email"
-                        android:inputType="textEmailAddress"
-                        android:textSize="16sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="16dp">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/password_et"
+                        android:id="@+id/sign_in_password_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/password"
@@ -103,7 +88,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/sign_up_page_btn"
+                    android:id="@+id/sign_in_page_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -115,10 +100,12 @@
                     android:gravity="center"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
-                    android:text="@string/sign_up"
+                    android:text="@string/sign_in"
                     android:textColor="@color/white"
                     android:textSize="18sp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
+
+
 </LinearLayout>
