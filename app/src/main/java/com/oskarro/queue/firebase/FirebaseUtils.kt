@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.oskarro.queue.activities.MainActivity
+import com.oskarro.queue.activities.MyProfileActivity
 import com.oskarro.queue.activities.SignInActivity
 import com.oskarro.queue.activities.SignUpActivity
 import com.oskarro.queue.model.User
@@ -34,7 +35,7 @@ class FirebaseUtils {
         return currentUserId
     }
 
-    fun signInUser(activity: Activity) {
+    fun loadUserData(activity: Activity) {
         fireStoreDatabase.collection(Constants.USERS)
             .document(getCurrentUserId())
             .get()
@@ -47,6 +48,9 @@ class FirebaseUtils {
                         }
                         is MainActivity -> {
                             activity.updateNavigationUserDetails(loggedInUser)
+                        }
+                        is MyProfileActivity -> {
+                            activity.setUserDataInUI(loggedInUser)
                         }
                     }
                 }

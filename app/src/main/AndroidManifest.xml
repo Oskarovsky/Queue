@@ -11,6 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Queue">
         <activity
+            android:name=".activities.MyProfileActivity"
+            android:exported="false"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.Queue.NoActionBar" />
+        <activity
             android:name=".activities.BaseActivity"
             android:exported="false" />
         <activity
