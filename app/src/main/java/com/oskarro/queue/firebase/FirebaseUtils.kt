@@ -2,6 +2,7 @@ package com.oskarro.queue.firebase
 
 import android.app.Activity
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -33,6 +34,21 @@ class FirebaseUtils {
             currentUserId = currentUser.uid
         }
         return currentUserId
+    }
+
+    fun updateUserProfileData(activity: MyProfileActivity, userHasMap: HashMap<String, Any>) {
+        fireStoreDatabase.collection(Constants.USERS)
+            .document(getCurrentUserId())
+            .update(userHasMap)
+            .addOnSuccessListener {
+                Log.i(activity.javaClass.simpleName, "Profile Data updated successfully!")
+                Toast.makeText(activity, "Profile updated successfully", Toast.LENGTH_SHORT).show()
+                activity.profileUpdateSuccess()
+            }.addOnSuccessListener { e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while creating a board")
+                Toast.makeText(activity, "Error when updating profile", Toast.LENGTH_SHORT).show()
+            }
     }
 
     fun loadUserData(activity: Activity) {
