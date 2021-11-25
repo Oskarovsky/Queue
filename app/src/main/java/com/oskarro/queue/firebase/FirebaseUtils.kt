@@ -25,6 +25,21 @@ class FirebaseUtils {
             }
     }
 
+    fun getBoardDetails(activity: ProcessListActivity, documentId: String) {
+        fireStoreDatabase.collection(Constants.BOARDS)
+            .document(documentId)
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e(activity.javaClass.simpleName, document.toString())
+                val board = document.toObject(Board::class.java)!!
+                board.documentId = document.id
+                activity.boardDetails(board)
+            }.addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while fetching a board details", e)
+            }
+    }
+
     fun createBoard(activity: CreateBoardActivity, board: Board) {
         fireStoreDatabase.collection(Constants.BOARDS)
             .document()
@@ -48,16 +63,14 @@ class FirebaseUtils {
         return currentUserId
     }
 
-    fun getBoardList(activity: MainActivity) {
+    fun getBoardsList(activity: MainActivity) {
         fireStoreDatabase.collection(Constants.BOARDS)
             .whereArrayContains(Constants.ASSIGNED_TO, getCurrentUserId())
             .get()
             .addOnSuccessListener { document ->
-                Log.e("GetBoardList", document.documents.toString())
+                Log.e(activity.javaClass.simpleName, document.documents.toString())
                 val boardList: ArrayList<Board> = ArrayList()
-                Log.d("OSKAR ", document.documents.toString())
                 for (i in document.documents) {
-                    Log.d("OSKAR2 ", i.toString())
                     val board = i.toObject(Board::class.java)!!
                     board.documentId = i.id
                     boardList.add(board)
@@ -66,6 +79,22 @@ class FirebaseUtils {
             }.addOnFailureListener { e ->
                 activity.hideProgressDialog()
                 Log.e(activity.javaClass.simpleName, "Error while creating a board", e)
+            }
+    }
+
+    fun addUpdateProcessList(activity: ProcessListActivity, board: Board) {
+        val processListHashMap = HashMap<String, Any>()
+        processListHashMap[Constants.PROCESS_LIST] = board.processList
+
+        fireStoreDatabase.collection(Constants.BOARDS)
+            .document(board.documentId)
+            .update(processListHashMap)
+            .addOnSuccessListener {
+                Log.e(activity.javaClass.simpleName, "ProcessList updated successfully")
+                activity.addUpdateProcessListSuccess()
+            }.addOnFailureListener { exception ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while creating a board", exception)
             }
     }
 

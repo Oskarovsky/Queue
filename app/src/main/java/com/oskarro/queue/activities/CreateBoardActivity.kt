@@ -1,5 +1,6 @@
 package com.oskarro.queue.activities
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.oskarro.queue.R
@@ -36,6 +37,7 @@ class CreateBoardActivity : BaseActivity() {
 
     fun boardCreatedSuccessfully() {
         hideProgressDialog()
+        setResult(Activity.RESULT_OK)
         finish()
     }
 

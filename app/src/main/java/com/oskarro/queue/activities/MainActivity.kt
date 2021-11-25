@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -14,7 +13,6 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.oskarro.queue.R
 import com.oskarro.queue.adapters.BoardItemsAdapter
-import com.oskarro.queue.databinding.ActivityMainBinding
 import com.oskarro.queue.firebase.FirebaseUtils
 import com.oskarro.queue.model.Board
 import com.oskarro.queue.model.User
@@ -28,7 +26,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     companion object {
         const val MY_PROFILE_REQUEST_CODE : Int = 11
-        const val CREATE_BOARD_REQUEST_CODE : Int = 21
+        const val CREATE_BOARD_REQUEST_CODE : Int = 12
     }
 
     private lateinit var mUserName: String
@@ -45,7 +43,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         fab_create_board.setOnClickListener {
             val intent = Intent(this, CreateBoardActivity::class.java)
             intent.putExtra(Constants.NAME, mUserName)
-            startActivity(intent)
+            startActivityForResult(intent, CREATE_BOARD_REQUEST_CODE)
         }
     }
 
@@ -60,6 +58,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
             val adapter = BoardItemsAdapter(this, boardsList)
             rv_boards_list.adapter = adapter
+
+            adapter.setOnClickListener(object: BoardItemsAdapter.OnClickListener{
+                override fun onClick(position: Int, model: Board) {
+                    val intent = Intent(this@MainActivity, ProcessListActivity::class.java)
+                    intent.putExtra(Constants.DOCUMENT_ID, model.documentId)
+                    startActivity(intent)
+                }
+            })
 
 
         } else {
@@ -96,6 +102,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == MY_PROFILE_REQUEST_CODE) {
             FirebaseUtils().loadUserData(this)
+        } else if (resultCode == Activity.RESULT_OK && requestCode == CREATE_BOARD_REQUEST_CODE) {
+            FirebaseUtils().getBoardsList(this)
         } else {
             Log.e("Cancelled", "Cancelled")
         }
@@ -132,7 +140,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         if (readBoardsList) {
             showProgressDialog(resources.getString(R.string.please_wait))
-            FirebaseUtils().getBoardList(this)
+            FirebaseUtils().getBoardsList(this)
         }
     }
 
