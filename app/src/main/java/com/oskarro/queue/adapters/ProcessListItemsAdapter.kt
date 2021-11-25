@@ -114,11 +114,10 @@ open class ProcessListItemsAdapter(private val context: Context,
                     Toast.makeText(context, "Please enter product name", Toast.LENGTH_SHORT).show()
                 }
             }
-//            holder.itemView.rv_product_list.layoutManager = LinearLayoutManager(context)
-//            holder.itemView.rv_product_list.setHasFixedSize(true)
-//
-//            val adapter = ProductListItemAdapter(context, model.products)
-//            holder.itemView.rv_product_list.adapter = adapter
+            holder.itemView.rv_product_list.layoutManager = LinearLayoutManager(context)
+            holder.itemView.rv_product_list.setHasFixedSize(true)
+            val adapter = ProductListItemAdapter(context, model.products)
+            holder.itemView.rv_product_list.adapter = adapter
         }
     }
 

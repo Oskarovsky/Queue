@@ -28,13 +28,13 @@
             android:textSize="16sp"
             android:text="Card Name"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            tools:visibility="visible"
-            android:layout_marginTop="5dp"
-            android:id="@+id/rv_product_selected_members_list" />
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="gone"-->
+<!--            tools:visibility="visible"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:id="@+id/rv_product_selected_members_list" />-->
 
         <TextView
             android:layout_width="wrap_content"
