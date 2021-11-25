@@ -10,10 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oskarro.queue.R
 import com.oskarro.queue.activities.ProcessListActivity
 import com.oskarro.queue.model.Process
+import kotlinx.android.synthetic.main.activity_process_list.view.*
 import kotlinx.android.synthetic.main.item_process.view.*
 
 open class ProcessListItemsAdapter(private val context: Context,
@@ -32,8 +34,9 @@ open class ProcessListItemsAdapter(private val context: Context,
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
+
         if (holder is MyViewHolder) {
-            if (position == list.size -1) {
+            if (position == list.size - 1) {
                 holder.itemView.tv_add_process_list.visibility = View.VISIBLE
                 holder.itemView.ll_process_item.visibility = View.GONE
             } else {
@@ -63,57 +66,60 @@ open class ProcessListItemsAdapter(private val context: Context,
                     Toast.makeText(context, "Please enter list name", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
 
-        holder.itemView.ib_edit_list_name.setOnClickListener {
-            holder.itemView.et_edit_process_list_name.setText(model.title)
-            holder.itemView.ll_title_view.visibility = View.GONE
-            holder.itemView.cv_edit_process_list_name.visibility = View.VISIBLE
-        }
-
-        holder.itemView.ib_close_editable_view.setOnClickListener {
-            holder.itemView.ll_title_view.visibility = View.VISIBLE
-            holder.itemView.cv_edit_process_list_name.visibility = View.GONE
-        }
-
-        holder.itemView.ib_done_edit_list_name.setOnClickListener {
-            val listName = holder.itemView.et_edit_process_list_name.text.toString()
-            if (listName.isNotEmpty()) {
-                if (context is ProcessListActivity) {
-                    context.updateProcessList(position, listName, model)
-                }
-            } else {
-                Toast.makeText(context, "Please enter list name", Toast.LENGTH_SHORT).show()
+            holder.itemView.ib_edit_list_name.setOnClickListener {
+                holder.itemView.et_edit_process_list_name.setText(model.title)
+                holder.itemView.ll_title_view.visibility = View.GONE
+                holder.itemView.cv_edit_process_list_name.visibility = View.VISIBLE
             }
-        }
 
-        holder.itemView.ib_delete_list.setOnClickListener {
-            alertDialogForDeleteList(position, model.title)
-        }
-
-        holder.itemView.tv_add_card.setOnClickListener {
-            holder.itemView.tv_add_card.visibility = View.GONE
-            holder.itemView.cv_add_card.visibility = View.VISIBLE
-        }
-
-        holder.itemView.ib_close_card_name.setOnClickListener {
-            holder.itemView.tv_add_card.visibility = View.VISIBLE
-            holder.itemView.cv_add_card.visibility = View.GONE
-        }
-
-        holder.itemView.ib_done_card_name.setOnClickListener {
-            val productName = holder.itemView.et_card_name.text.toString()
-
-            if (productName.isNotEmpty()) {
-                if (context is ProcessListActivity) {
-                    context.addProductToProcessList(position, productName)
-                }
-            } else {
-                Toast.makeText(context, "Please enter product name", Toast.LENGTH_SHORT).show()
+            holder.itemView.ib_close_editable_view.setOnClickListener {
+                holder.itemView.ll_title_view.visibility = View.VISIBLE
+                holder.itemView.cv_edit_process_list_name.visibility = View.GONE
             }
+
+            holder.itemView.ib_done_edit_list_name.setOnClickListener {
+                val listName = holder.itemView.et_edit_process_list_name.text.toString()
+                if (listName.isNotEmpty()) {
+                    if (context is ProcessListActivity) {
+                        context.updateProcessList(position, listName, model)
+                    }
+                } else {
+                    Toast.makeText(context, "Please enter list name", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            holder.itemView.ib_delete_list.setOnClickListener {
+                alertDialogForDeleteList(position, model.title)
+            }
+
+            holder.itemView.tv_add_card.setOnClickListener {
+                holder.itemView.tv_add_card.visibility = View.GONE
+                holder.itemView.cv_add_card.visibility = View.VISIBLE
+            }
+
+            holder.itemView.ib_close_card_name.setOnClickListener {
+                holder.itemView.tv_add_card.visibility = View.VISIBLE
+                holder.itemView.cv_add_card.visibility = View.GONE
+            }
+
+            holder.itemView.ib_done_card_name.setOnClickListener {
+                val productName = holder.itemView.et_card_name.text.toString()
+
+                if (productName.isNotEmpty()) {
+                    if (context is ProcessListActivity) {
+                        context.addProductToProcessList(position, productName)
+                    }
+                } else {
+                    Toast.makeText(context, "Please enter product name", Toast.LENGTH_SHORT).show()
+                }
+            }
+//            holder.itemView.rv_product_list.layoutManager = LinearLayoutManager(context)
+//            holder.itemView.rv_product_list.setHasFixedSize(true)
+//
+//            val adapter = ProductListItemAdapter(context, model.products)
+//            holder.itemView.rv_product_list.adapter = adapter
         }
-
-
     }
 
     private fun alertDialogForDeleteList(position : Int, title : String){
