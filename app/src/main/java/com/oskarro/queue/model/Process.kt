@@ -6,6 +6,7 @@ import android.os.Parcelable
 data class Process(
     var title: String = "",
     val createdBy: String = "",
+    val products: ArrayList<Product> = ArrayList(),
     var orderNumber: String = "",
     var amount: String = "",
     var description: String = "",
@@ -15,6 +16,7 @@ data class Process(
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
+        parcel.createTypedArrayList(Product.CREATOR)!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
@@ -24,6 +26,7 @@ data class Process(
     override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
         writeString(title)
         writeString(orderNumber)
+        writeTypedList(products)
         writeString(amount)
         writeString(description)
         writeString(createdBy)

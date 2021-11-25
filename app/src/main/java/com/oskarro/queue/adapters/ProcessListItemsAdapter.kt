@@ -3,6 +3,7 @@ package com.oskarro.queue.adapters
 import android.app.AlertDialog
 import android.content.Context
 import android.content.res.Resources
+import android.opengl.Visibility
 import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
@@ -89,6 +90,30 @@ open class ProcessListItemsAdapter(private val context: Context,
         holder.itemView.ib_delete_list.setOnClickListener {
             alertDialogForDeleteList(position, model.title)
         }
+
+        holder.itemView.tv_add_card.setOnClickListener {
+            holder.itemView.tv_add_card.visibility = View.GONE
+            holder.itemView.cv_add_card.visibility = View.VISIBLE
+        }
+
+        holder.itemView.ib_close_card_name.setOnClickListener {
+            holder.itemView.tv_add_card.visibility = View.VISIBLE
+            holder.itemView.cv_add_card.visibility = View.GONE
+        }
+
+        holder.itemView.ib_done_card_name.setOnClickListener {
+            val productName = holder.itemView.et_card_name.text.toString()
+
+            if (productName.isNotEmpty()) {
+                if (context is ProcessListActivity) {
+                    context.addProductToProcessList(position, productName)
+                }
+            } else {
+                Toast.makeText(context, "Please enter product name", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
     }
 
     private fun alertDialogForDeleteList(position : Int, title : String){

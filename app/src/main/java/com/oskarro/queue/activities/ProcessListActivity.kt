@@ -8,6 +8,7 @@ import com.oskarro.queue.adapters.ProcessListItemsAdapter
 import com.oskarro.queue.firebase.FirebaseUtils
 import com.oskarro.queue.model.Board
 import com.oskarro.queue.model.Process
+import com.oskarro.queue.model.Product
 import com.oskarro.queue.utils.Constants
 import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.activity_process_list.*
@@ -38,7 +39,7 @@ class ProcessListActivity : BaseActivity() {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
             actionBar.title = mBoardDetails.name
         }
-        toolbar_process_list_activity.setNavigationOnClickListener{ onBackPressed() }
+        toolbar_process_list_activity.setNavigationOnClickListener { onBackPressed() }
     }
 
     fun boardDetails(board: Board) {
@@ -81,6 +82,23 @@ class ProcessListActivity : BaseActivity() {
     fun deleteProcessList(position: Int) {
         mBoardDetails.processList.removeAt(position)
         mBoardDetails.processList.removeAt(mBoardDetails.processList.size - 1)
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirebaseUtils().addUpdateProcessList(this, mBoardDetails)
+    }
+
+    fun addProductToProcessList(position: Int, productName: String) {
+        mBoardDetails.processList.removeAt(mBoardDetails.processList.size - 1)
+        val productAssignedUsersList: ArrayList<String> = ArrayList()
+        productAssignedUsersList.add(FirebaseUtils().getCurrentUserId())
+        val product = Product(productName, FirebaseUtils().getCurrentUserId(), productAssignedUsersList)
+        val productList = mBoardDetails.processList[position].products
+        productList.add(product)
+        val process = Process(
+            mBoardDetails.processList[position].title,
+            mBoardDetails.processList[position].createdBy,
+            productList
+        )
+        mBoardDetails.processList[position] = process
         showProgressDialog(resources.getString(R.string.please_wait))
         FirebaseUtils().addUpdateProcessList(this, mBoardDetails)
     }
