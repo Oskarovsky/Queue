@@ -5,44 +5,66 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.widget.LinearLayout
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.oskarro.queue.R
+import com.oskarro.queue.adapters.BoardItemsAdapter
 import com.oskarro.queue.databinding.ActivityMainBinding
 import com.oskarro.queue.firebase.FirebaseUtils
+import com.oskarro.queue.model.Board
 import com.oskarro.queue.model.User
 import com.oskarro.queue.utils.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.main_content.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     companion object {
         const val MY_PROFILE_REQUEST_CODE : Int = 11
+        const val CREATE_BOARD_REQUEST_CODE : Int = 21
     }
 
     private lateinit var mUserName: String
 
-    private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         setupActionBar()
-
         nav_view.setNavigationItemSelectedListener(this)
 
-        FirebaseUtils().loadUserData(this)
+        FirebaseUtils().loadUserData(this, true)
 
         fab_create_board.setOnClickListener {
             val intent = Intent(this, CreateBoardActivity::class.java)
             intent.putExtra(Constants.NAME, mUserName)
             startActivity(intent)
+        }
+    }
+
+    fun populateBoardsListToUI(boardsList: ArrayList<Board>) {
+        hideProgressDialog()
+        if (boardsList.size > 0) {
+            rv_boards_list.visibility = View.VISIBLE
+            tv_no_boards.visibility = View.GONE
+
+            rv_boards_list.layoutManager = LinearLayoutManager(this)
+            rv_boards_list.setHasFixedSize(true)
+
+            val adapter = BoardItemsAdapter(this, boardsList)
+            rv_boards_list.adapter = adapter
+
+
+        } else {
+            rv_boards_list.visibility = View.GONE
+            tv_no_boards.visibility = View.VISIBLE
         }
     }
 
@@ -96,8 +118,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return true
     }
 
-    fun updateNavigationUserDetails(user: User) {
-
+    fun updateNavigationUserDetails(user: User, readBoardsList: Boolean) {
         mUserName = user.name
 
         Glide
@@ -108,6 +129,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             .into(nav_user_image)
 
         tv_username.text = user.name
+
+        if (readBoardsList) {
+            showProgressDialog(resources.getString(R.string.please_wait))
+            FirebaseUtils().getBoardList(this)
+        }
     }
 
 

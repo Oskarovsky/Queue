@@ -6,32 +6,31 @@ import android.os.Parcelable
 data class Board (
     val name: String = "",
     val createdBy: String = "",
-    val assignedTo: ArrayList<String>
-):Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readString()!!,
-        parcel.readString()!!,
-        parcel.createStringArrayList()!!
+    val assignedTo: ArrayList<String> = ArrayList(),
+    var documentId: String = ""
+) : Parcelable {
+    constructor(source: Parcel) : this(
+        source.readString()!!,
+        source.readString()!!,
+        source.createStringArrayList()!!,
+        source.readString()!!
     ) {
     }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) = with(parcel){
-        parcel.writeString(name)
-        parcel.writeString(createdBy)
-        parcel.writeStringList(assignedTo)
+    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest){
+        dest.writeString(name)
+        dest.writeString(createdBy)
+        dest.writeStringList(assignedTo)
+        dest.writeString(documentId)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents(): Int = 0
 
-    companion object CREATOR : Parcelable.Creator<Board> {
-        override fun createFromParcel(parcel: Parcel): Board {
-            return Board(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Board?> {
-            return arrayOfNulls(size)
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<Board> = object : Parcelable.Creator<Board> {
+            override fun createFromParcel(source: Parcel): Board = Board(source)
+            override fun newArray(size: Int): Array<Board?> = arrayOfNulls(size)
         }
     }
 }

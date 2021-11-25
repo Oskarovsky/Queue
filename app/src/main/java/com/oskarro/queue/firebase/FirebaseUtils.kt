@@ -48,6 +48,27 @@ class FirebaseUtils {
         return currentUserId
     }
 
+    fun getBoardList(activity: MainActivity) {
+        fireStoreDatabase.collection(Constants.BOARDS)
+            .whereArrayContains(Constants.ASSIGNED_TO, getCurrentUserId())
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e("GetBoardList", document.documents.toString())
+                val boardList: ArrayList<Board> = ArrayList()
+                Log.d("OSKAR ", document.documents.toString())
+                for (i in document.documents) {
+                    Log.d("OSKAR2 ", i.toString())
+                    val board = i.toObject(Board::class.java)!!
+                    board.documentId = i.id
+                    boardList.add(board)
+                }
+                activity.populateBoardsListToUI(boardList)
+            }.addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while creating a board", e)
+            }
+    }
+
     fun updateUserProfileData(activity: MyProfileActivity, userHasMap: HashMap<String, Any>) {
         fireStoreDatabase.collection(Constants.USERS)
             .document(getCurrentUserId())
@@ -63,7 +84,7 @@ class FirebaseUtils {
             }
     }
 
-    fun loadUserData(activity: Activity) {
+    fun loadUserData(activity: Activity, readBoardsList: Boolean = false) {
         fireStoreDatabase.collection(Constants.USERS)
             .document(getCurrentUserId())
             .get()
@@ -75,7 +96,7 @@ class FirebaseUtils {
                             activity.signInSuccess(loggedInUser)
                         }
                         is MainActivity -> {
-                            activity.updateNavigationUserDetails(loggedInUser)
+                            activity.updateNavigationUserDetails(loggedInUser, readBoardsList)
                         }
                         is MyProfileActivity -> {
                             activity.setUserDataInUI(loggedInUser)
