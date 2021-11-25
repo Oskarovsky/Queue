@@ -1,7 +1,9 @@
 package com.oskarro.queue.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
@@ -11,11 +13,18 @@ import com.oskarro.queue.R
 import com.oskarro.queue.databinding.ActivityMainBinding
 import com.oskarro.queue.firebase.FirebaseUtils
 import com.oskarro.queue.model.User
+import com.oskarro.queue.utils.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    companion object {
+        const val MY_PROFILE_REQUEST_CODE : Int = 11
+    }
+
+    private lateinit var mUserName: String
 
     private lateinit var binding: ActivityMainBinding
 
@@ -29,6 +38,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         nav_view.setNavigationItemSelectedListener(this)
 
         FirebaseUtils().loadUserData(this)
+
+        fab_create_board.setOnClickListener {
+            val intent = Intent(this, CreateBoardActivity::class.java)
+            intent.putExtra(Constants.NAME, mUserName)
+            startActivity(intent)
+        }
     }
 
     private fun setupActionBar() {
@@ -55,10 +70,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == MY_PROFILE_REQUEST_CODE) {
+            FirebaseUtils().loadUserData(this)
+        } else {
+            Log.e("Cancelled", "Cancelled")
+        }
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_my_profile -> {
-                startActivity(Intent(this, MyProfileActivity::class.java))
+                startActivityForResult(Intent(this, MyProfileActivity::class.java), MY_PROFILE_REQUEST_CODE)
             }
             R.id.nav_sign_out -> {
                 FirebaseAuth.getInstance().signOut()
@@ -73,6 +97,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     fun updateNavigationUserDetails(user: User) {
+
+        mUserName = user.name
+
         Glide
             .with(this)
             .load(user.imageUrl)

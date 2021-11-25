@@ -6,10 +6,8 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.oskarro.queue.activities.MainActivity
-import com.oskarro.queue.activities.MyProfileActivity
-import com.oskarro.queue.activities.SignInActivity
-import com.oskarro.queue.activities.SignUpActivity
+import com.oskarro.queue.activities.*
+import com.oskarro.queue.model.Board
 import com.oskarro.queue.model.User
 import com.oskarro.queue.utils.Constants
 
@@ -24,6 +22,20 @@ class FirebaseUtils {
                 activity.userRegisteredSuccess()
             }.addOnFailureListener {
                 e -> Log.e(activity.javaClass.simpleName, "Error has occurred during registration")
+            }
+    }
+
+    fun createBoard(activity: CreateBoardActivity, board: Board) {
+        fireStoreDatabase.collection(Constants.BOARDS)
+            .document()
+            .set(board, SetOptions.merge())
+            .addOnSuccessListener {
+                Log.e(activity.javaClass.simpleName, "Board created successfully")
+                Toast.makeText(activity, "Board created successfully", Toast.LENGTH_SHORT).show()
+                activity.boardCreatedSuccessfully()
+            }. addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error has occurred during creating a board")
             }
     }
 
