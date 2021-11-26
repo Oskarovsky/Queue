@@ -33,6 +33,7 @@
     <string name="create_board_title">Create board</string>
     <string name="create">CREATE</string>
     <string name="board_name">Board name</string>
+    <string name="members">Members</string>
 
 
 </resources>
