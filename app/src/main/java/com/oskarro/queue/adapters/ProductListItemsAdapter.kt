@@ -17,7 +17,13 @@ open class ProductListItemsAdapter(
     private var onClickListener : OnClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_process, parent, false))
+        return MyViewHolder(
+            LayoutInflater.from(context).inflate(
+                R.layout.item_product,
+                parent,
+                false
+            )
+        )
     }
 
 
@@ -41,6 +47,6 @@ open class ProductListItemsAdapter(
         fun onClick(position : Int, product: Product)
     }
 
-    private class MyViewHolder(view : View): RecyclerView.ViewHolder(view)
+    class MyViewHolder(view : View): RecyclerView.ViewHolder(view)
 
 }
