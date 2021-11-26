@@ -172,7 +172,7 @@
                 android:layout_margin="5dp" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cv_add_card"
+                android:id="@+id/cv_add_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -196,7 +196,7 @@
                         android:src="@drawable/ic_cancel" />
 
                     <EditText
-                        android:id="@+id/et_card_name"
+                        android:id="@+id/et_product_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -205,7 +205,7 @@
                         android:inputType="text" />
 
                     <ImageButton
-                        android:id="@+id/ib_done_card_name"
+                        android:id="@+id/ib_done_product_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
@@ -215,7 +215,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/tv_add_card"
+                android:id="@+id/tv_add_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#efffff"

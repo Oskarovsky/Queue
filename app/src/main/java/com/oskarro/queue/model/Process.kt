@@ -35,13 +35,11 @@ data class Process(
 
     override fun describeContents(): Int = 0
 
-    companion object CREATOR : Parcelable.Creator<Process> {
-        override fun createFromParcel(parcel: Parcel): Process {
-            return Process(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Process?> {
-            return arrayOfNulls(size)
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<Process> = object : Parcelable.Creator<Process> {
+            override fun createFromParcel(source: Parcel): Process = Process(source)
+            override fun newArray(size: Int): Array<Process?> = arrayOfNulls(size)
         }
     }
 }

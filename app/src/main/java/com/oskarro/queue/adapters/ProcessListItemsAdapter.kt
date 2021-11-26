@@ -3,8 +3,6 @@ package com.oskarro.queue.adapters
 import android.app.AlertDialog
 import android.content.Context
 import android.content.res.Resources
-import android.opengl.Visibility
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.oskarro.queue.R
 import com.oskarro.queue.activities.ProcessListActivity
 import com.oskarro.queue.model.Process
-import kotlinx.android.synthetic.main.activity_process_list.view.*
 import kotlinx.android.synthetic.main.item_process.view.*
 
 open class ProcessListItemsAdapter(private val context: Context,
@@ -93,30 +90,32 @@ open class ProcessListItemsAdapter(private val context: Context,
                 alertDialogForDeleteList(position, model.title)
             }
 
-            holder.itemView.tv_add_card.setOnClickListener {
-                holder.itemView.tv_add_card.visibility = View.GONE
-                holder.itemView.cv_add_card.visibility = View.VISIBLE
-            }
 
-            holder.itemView.ib_close_card_name.setOnClickListener {
-                holder.itemView.tv_add_card.visibility = View.VISIBLE
-                holder.itemView.cv_add_card.visibility = View.GONE
-            }
 
-            holder.itemView.ib_done_card_name.setOnClickListener {
-                val productName = holder.itemView.et_card_name.text.toString()
+            holder.itemView.tv_add_product.setOnClickListener {
+                holder.itemView.tv_add_product.visibility = View.GONE
+                holder.itemView.cv_add_product.visibility = View.VISIBLE
 
-                if (productName.isNotEmpty()) {
-                    if (context is ProcessListActivity) {
-                        context.addProductToProcessList(position, productName)
+                holder.itemView.ib_close_card_name.setOnClickListener {
+                    holder.itemView.tv_add_product.visibility = View.VISIBLE
+                    holder.itemView.cv_add_product.visibility = View.GONE
+                }
+
+                holder.itemView.ib_done_product_name.setOnClickListener {
+                    val productName = holder.itemView.et_product_name.text.toString()
+
+                    if (productName.isNotEmpty()) {
+                        if (context is ProcessListActivity) {
+                            context.addProductToProcessList(position, productName)
+                        }
+                    } else {
+                        Toast.makeText(context, "Please enter product name", Toast.LENGTH_SHORT).show()
                     }
-                } else {
-                    Toast.makeText(context, "Please enter product name", Toast.LENGTH_SHORT).show()
                 }
             }
             holder.itemView.rv_product_list.layoutManager = LinearLayoutManager(context)
             holder.itemView.rv_product_list.setHasFixedSize(true)
-            val adapter = ProductListItemAdapter(context, model.products)
+            val adapter = ProductListItemsAdapter(context, model.products)
             holder.itemView.rv_product_list.adapter = adapter
         }
     }

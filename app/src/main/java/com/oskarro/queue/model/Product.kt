@@ -34,15 +34,13 @@ data class Product (
         writeString(stage)
     }
 
-    override fun describeContents(): Int = 0
-
-    companion object CREATOR : Parcelable.Creator<Product> {
-        override fun createFromParcel(parcel: Parcel): Product {
-            return Product(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Product?> {
-            return arrayOfNulls(size)
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<Product> = object : Parcelable.Creator<Product> {
+            override fun createFromParcel(source: Parcel): Product = Product(source)
+            override fun newArray(size: Int): Array<Product?> = arrayOfNulls(size)
         }
     }
+
+    override fun describeContents(): Int = 0
 }

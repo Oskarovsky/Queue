@@ -9,7 +9,7 @@ import com.oskarro.queue.R
 import com.oskarro.queue.model.Product
 import kotlinx.android.synthetic.main.item_product.view.*
 
-open class ProductListItemAdapter(
+open class ProductListItemsAdapter(
     private val context: Context,
     private var list: ArrayList<Product>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -24,7 +24,7 @@ open class ProductListItemAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
         if (holder is MyViewHolder) {
-            holder.itemView.tv_card_name.text = model.name
+            holder.itemView.tv_product_name.text = model.name
         }
     }
 
@@ -38,7 +38,7 @@ open class ProductListItemAdapter(
     }
 
     interface OnClickListener{
-        fun onClick(position : Int)
+        fun onClick(position : Int, product: Product)
     }
 
     private class MyViewHolder(view : View): RecyclerView.ViewHolder(view)
