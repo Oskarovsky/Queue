@@ -40,5 +40,11 @@
     <string name="add">ADD</string>
     <string name="search_member">Search Member</string>
 
+    <string name="label_color">Label color</string>
+    <string name="select_color">Select color</string>
+    <string name="select_members">Select members</string>
+    <string name="due_date">Due date</string>
+    <string name="select_due_date">Select due date</string>
+
 
 </resources>

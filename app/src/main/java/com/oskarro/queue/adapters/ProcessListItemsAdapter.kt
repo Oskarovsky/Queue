@@ -29,11 +29,11 @@ open class ProcessListItemsAdapter(private val context: Context,
         return MyViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val model = list[position]
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, processPosition: Int) {
+        val model = list[processPosition]
 
         if (holder is MyViewHolder) {
-            if (position == list.size - 1) {
+            if (processPosition == list.size - 1) {
                 holder.itemView.tv_add_process_list.visibility = View.VISIBLE
                 holder.itemView.ll_process_item.visibility = View.GONE
             } else {
@@ -79,7 +79,7 @@ open class ProcessListItemsAdapter(private val context: Context,
                 val listName = holder.itemView.et_edit_process_list_name.text.toString()
                 if (listName.isNotEmpty()) {
                     if (context is ProcessListActivity) {
-                        context.updateProcessList(position, listName, model)
+                        context.updateProcessList(processPosition, listName, model)
                     }
                 } else {
                     Toast.makeText(context, "Please enter list name", Toast.LENGTH_SHORT).show()
@@ -87,7 +87,7 @@ open class ProcessListItemsAdapter(private val context: Context,
             }
 
             holder.itemView.ib_delete_list.setOnClickListener {
-                alertDialogForDeleteList(position, model.title)
+                alertDialogForDeleteList(processPosition, model.title)
             }
 
 
@@ -106,7 +106,7 @@ open class ProcessListItemsAdapter(private val context: Context,
 
                     if (productName.isNotEmpty()) {
                         if (context is ProcessListActivity) {
-                            context.addProductToProcessList(position, productName)
+                            context.addProductToProcessList(processPosition, productName)
                         }
                     } else {
                         Toast.makeText(context, "Please enter product name", Toast.LENGTH_SHORT).show()
@@ -117,6 +117,16 @@ open class ProcessListItemsAdapter(private val context: Context,
             holder.itemView.rv_product_list.setHasFixedSize(true)
             val adapter = ProductListItemsAdapter(context, model.products)
             holder.itemView.rv_product_list.adapter = adapter
+
+            adapter.setOnClickListener(
+                object:  ProductListItemsAdapter.OnClickListener {
+                    override fun onClick(productPosition: Int) {
+                        if (context is ProcessListActivity) {
+                            context.productDetails(processPosition, productPosition)
+                        }
+                    }
+                }
+            )
         }
     }
 

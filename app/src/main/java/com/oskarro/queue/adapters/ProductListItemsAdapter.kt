@@ -31,6 +31,11 @@ open class ProductListItemsAdapter(
         val model = list[position]
         if (holder is MyViewHolder) {
             holder.itemView.tv_product_name.text = model.name
+            holder.itemView.setOnClickListener {
+                if (onClickListener != null) {
+                    onClickListener!!.onClick(position)
+                }
+            }
         }
     }
 
@@ -44,7 +49,7 @@ open class ProductListItemsAdapter(
     }
 
     interface OnClickListener{
-        fun onClick(position : Int, product: Product)
+        fun onClick(position : Int)
     }
 
     class MyViewHolder(view : View): RecyclerView.ViewHolder(view)
