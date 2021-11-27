@@ -52,7 +52,11 @@ class ProcessListActivity : BaseActivity() {
     }
 
     fun productDetails(processListPosition: Int, productPosition: Int) {
-        startActivity(Intent(this@ProcessListActivity, ProductDetailsActivity::class.java))
+        val intent = Intent(this@ProcessListActivity, ProductDetailsActivity::class.java)
+        intent.putExtra(Constants.BOARD_DETAIL, mBoardDetails)
+        intent.putExtra(Constants.PROCESS_LIST_ITEM_POSITION, processListPosition)
+        intent.putExtra(Constants.PRODUCT_LIST_ITEM_POSITION, productPosition)
+        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

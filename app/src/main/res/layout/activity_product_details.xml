@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Queue.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_card_details_activity"
+            android:id="@+id/toolbar_product_details_activity"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -131,23 +131,23 @@
                     android:text="Select Due Date"
                     android:textColor="@color/primary_text_color" />
 
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="15dp"-->
-<!--                    android:text="Status"-->
-<!--                    android:textColor="@color/secondary_text_color"-->
-<!--                    android:textSize="14sp"-->
-<!--                    android:id="@+id/tv_select_status_1"/>-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Status"
+                    android:textColor="@color/secondary_text_color"
+                    android:textSize="14sp"
+                    android:id="@+id/tv_select_status_1"/>
 
-<!--                <TextView-->
-<!--                    android:id="@+id/tv_select_status"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="5dp"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:text="Select Status"-->
-<!--                    android:textColor="@color/primary_text_color" />-->
+                <TextView
+                    android:id="@+id/tv_select_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:padding="10dp"
+                    android:text="Select Status"
+                    android:textColor="@color/primary_text_color" />
 
                 <Button
                     android:id="@+id/btn_update_card_details"
