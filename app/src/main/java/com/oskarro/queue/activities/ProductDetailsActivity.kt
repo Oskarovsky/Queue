@@ -1,18 +1,17 @@
 package com.oskarro.queue.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.oskarro.queue.R
 import com.oskarro.queue.model.Board
 import com.oskarro.queue.utils.Constants
-import kotlinx.android.synthetic.main.activity_members.*
 import kotlinx.android.synthetic.main.activity_product_details.*
 
-class ProductDetailsActivity : AppCompatActivity() {
+class ProductDetailsActivity : BaseActivity() {
 
     private lateinit var mBoardDetails: Board
-    private var mProcessListPosition = -1
-    private var mProductPosition = -1
+    private var mProcessListPosition: Int = -1
+    private var mProductPosition: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +26,13 @@ class ProductDetailsActivity : AppCompatActivity() {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
+
+            Log.d("XXX1", mBoardDetails.processList.toString())
+            Log.d("XXX11", mProcessListPosition.toString())
+            Log.d("XXX2", mBoardDetails.processList[mProcessListPosition].toString())
+            Log.d("XXX3", mBoardDetails.processList[mProcessListPosition].products.toString())
+            Log.d("XXX4", mProductPosition.toString())
+            Log.d("XXX5", mBoardDetails.processList[mProcessListPosition].products[mProductPosition].toString())
             actionBar.title = mBoardDetails.processList[mProcessListPosition].products[mProductPosition].name
         }
         toolbar_product_details_activity.setNavigationOnClickListener{ onBackPressed() }

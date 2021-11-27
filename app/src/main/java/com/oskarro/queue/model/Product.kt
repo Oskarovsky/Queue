@@ -7,31 +7,19 @@ import android.os.WorkSource
 data class Product (
     val name: String = "",
     val createdBy: String = "",
-    val assignedTo: ArrayList<String> = ArrayList(),
-    var orderNumber: String = "",
-    var amount: String = "",
-    var description: String = "",
-    val stage: String = ""
+    val assignedTo: ArrayList<String> = ArrayList()
 ) : Parcelable {
 
     constructor(source: Parcel) : this(
         source.readString()!!,
         source.readString()!!,
         source.createStringArrayList()!!,
-        source.readString()!!,
-        source.readString()!!,
-        source.readString()!!,
-        source.readString()!!
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) = with(parcel) {
         writeString(name)
         writeString(createdBy)
-        writeString(orderNumber)
         writeStringList(assignedTo)
-        writeString(amount)
-        writeString(description)
-        writeString(stage)
     }
 
     companion object {

@@ -28,7 +28,7 @@ class ProcessListActivity : BaseActivity() {
         setContentView(R.layout.activity_process_list)
 
         if (intent.hasExtra(Constants.DOCUMENT_ID)) {
-            mBoardDocumentId = intent.getStringExtra(Constants.DOCUMENT_ID).toString()
+            mBoardDocumentId = intent.getStringExtra(Constants.DOCUMENT_ID)!!
         }
 
         showProgressDialog(resources.getString(R.string.please_wait))
@@ -43,9 +43,9 @@ class ProcessListActivity : BaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Activity.RESULT_OK && requestCode == MEMBERS_REQUEST_CODE) {
+        if (resultCode == Activity.RESULT_OK && requestCode == MEMBERS_REQUEST_CODE) {
             showProgressDialog(resources.getString(R.string.please_wait))
-            FirebaseUtils().getBoardDetails(this, mBoardDocumentId)
+            FirebaseUtils().getBoardDetails(this@ProcessListActivity, mBoardDocumentId)
         } else {
             Log.e("Cancelled", "Cancelled")
         }
@@ -67,7 +67,7 @@ class ProcessListActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_members -> {
-                val intent = Intent(this, MembersActivity::class.java)
+                val intent = Intent(this@ProcessListActivity, MembersActivity::class.java)
                 intent.putExtra(Constants.BOARD_DETAIL, mBoardDetails)
                 startActivityForResult(intent, MEMBERS_REQUEST_CODE)
                 return true
@@ -94,18 +94,19 @@ class ProcessListActivity : BaseActivity() {
         setupActionBar()
 
         val addProcessList = Process("Add list")
-        board.processList.add(addProcessList)
+        mBoardDetails.processList.add(addProcessList)
+
         rv_process_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rv_process_list.setHasFixedSize(true)
 
-        val adapter = ProcessListItemsAdapter(this, board.processList)
+        val adapter = ProcessListItemsAdapter(this@ProcessListActivity, mBoardDetails.processList)
         rv_process_list.adapter = adapter
     }
 
     fun addUpdateProcessListSuccess() {
         hideProgressDialog()
         showProgressDialog(resources.getString(R.string.please_wait))
-        FirebaseUtils().getBoardDetails(this, mBoardDetails.documentId)
+        FirebaseUtils().getBoardDetails(this@ProcessListActivity, mBoardDetails.documentId)
     }
 
     fun createProcessList(processListName: String) {
@@ -121,14 +122,14 @@ class ProcessListActivity : BaseActivity() {
         mBoardDetails.processList[position] = process
         mBoardDetails.processList.removeAt(mBoardDetails.processList.size - 1)
         showProgressDialog(resources.getString(R.string.please_wait))
-        FirebaseUtils().addUpdateProcessList(this, mBoardDetails)
+        FirebaseUtils().addUpdateProcessList(this@ProcessListActivity, mBoardDetails)
     }
 
     fun deleteProcessList(position: Int) {
         mBoardDetails.processList.removeAt(position)
         mBoardDetails.processList.removeAt(mBoardDetails.processList.size - 1)
         showProgressDialog(resources.getString(R.string.please_wait))
-        FirebaseUtils().addUpdateProcessList(this, mBoardDetails)
+        FirebaseUtils().addUpdateProcessList(this@ProcessListActivity, mBoardDetails)
     }
 
     fun addProductToProcessList(position: Int, productName: String) {
@@ -145,10 +146,11 @@ class ProcessListActivity : BaseActivity() {
         )
         mBoardDetails.processList[position] = process
         showProgressDialog(resources.getString(R.string.please_wait))
-        FirebaseUtils().addUpdateProcessList(this, mBoardDetails)
+        FirebaseUtils().addUpdateProcessList(this@ProcessListActivity, mBoardDetails)
     }
 
     companion object {
         const val MEMBERS_REQUEST_CODE: Int = 13
+        const val PRODUCT_DETAILS_REQUEST_CODE : Int = 14
     }
 }

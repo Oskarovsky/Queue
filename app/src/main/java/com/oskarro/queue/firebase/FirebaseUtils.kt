@@ -12,7 +12,7 @@ import com.oskarro.queue.model.User
 import com.oskarro.queue.utils.Constants
 
 class FirebaseUtils {
-    val fireStoreDatabase = FirebaseFirestore.getInstance()
+    private val fireStoreDatabase = FirebaseFirestore.getInstance()
 
     fun registerUser(activity: SignUpActivity, userInfo: User) {
         fireStoreDatabase.collection(Constants.USERS)

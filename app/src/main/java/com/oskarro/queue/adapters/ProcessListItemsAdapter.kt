@@ -3,6 +3,7 @@ package com.oskarro.queue.adapters
 import android.app.AlertDialog
 import android.content.Context
 import android.content.res.Resources
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,11 +30,12 @@ open class ProcessListItemsAdapter(private val context: Context,
         return MyViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, processPosition: Int) {
-        val model = list[processPosition]
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val model = list[position]
 
         if (holder is MyViewHolder) {
-            if (processPosition == list.size - 1) {
+            if (position == list.size - 1) {
                 holder.itemView.tv_add_process_list.visibility = View.VISIBLE
                 holder.itemView.ll_process_item.visibility = View.GONE
             } else {
@@ -77,9 +79,10 @@ open class ProcessListItemsAdapter(private val context: Context,
 
             holder.itemView.ib_done_edit_list_name.setOnClickListener {
                 val listName = holder.itemView.et_edit_process_list_name.text.toString()
+
                 if (listName.isNotEmpty()) {
                     if (context is ProcessListActivity) {
-                        context.updateProcessList(processPosition, listName, model)
+                        context.updateProcessList(position, listName, model)
                     }
                 } else {
                     Toast.makeText(context, "Please enter list name", Toast.LENGTH_SHORT).show()
@@ -87,7 +90,7 @@ open class ProcessListItemsAdapter(private val context: Context,
             }
 
             holder.itemView.ib_delete_list.setOnClickListener {
-                alertDialogForDeleteList(processPosition, model.title)
+                alertDialogForDeleteList(position, model.title)
             }
 
 
@@ -106,7 +109,7 @@ open class ProcessListItemsAdapter(private val context: Context,
 
                     if (productName.isNotEmpty()) {
                         if (context is ProcessListActivity) {
-                            context.addProductToProcessList(processPosition, productName)
+                            context.addProductToProcessList(position, productName)
                         }
                     } else {
                         Toast.makeText(context, "Please enter product name", Toast.LENGTH_SHORT).show()
@@ -115,6 +118,7 @@ open class ProcessListItemsAdapter(private val context: Context,
             }
             holder.itemView.rv_product_list.layoutManager = LinearLayoutManager(context)
             holder.itemView.rv_product_list.setHasFixedSize(true)
+
             val adapter = ProductListItemsAdapter(context, model.products)
             holder.itemView.rv_product_list.adapter = adapter
 
@@ -122,7 +126,8 @@ open class ProcessListItemsAdapter(private val context: Context,
                 object:  ProductListItemsAdapter.OnClickListener {
                     override fun onClick(productPosition: Int) {
                         if (context is ProcessListActivity) {
-                            context.productDetails(processPosition, productPosition)
+                            Log.d("YYY", "$position and $productPosition")
+                            context.productDetails(position, productPosition)
                         }
                     }
                 }

@@ -49,7 +49,7 @@ open class ProductListItemsAdapter(
     }
 
     interface OnClickListener{
-        fun onClick(position : Int)
+        fun onClick(productPosition : Int)
     }
 
     class MyViewHolder(view : View): RecyclerView.ViewHolder(view)
