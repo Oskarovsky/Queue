@@ -2,13 +2,17 @@ package com.oskarro.queue.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.oskarro.queue.R
+import com.oskarro.queue.adapters.MemberListItemAdapter
+import com.oskarro.queue.firebase.FirebaseUtils
 import com.oskarro.queue.model.Board
+import com.oskarro.queue.model.User
 import com.oskarro.queue.utils.Constants
 import kotlinx.android.synthetic.main.activity_members.*
 import kotlinx.android.synthetic.main.activity_my_profile.*
 
-class MembersActivity : AppCompatActivity() {
+class MembersActivity : BaseActivity() {
 
     private lateinit var mBoardDetails: Board
 
@@ -21,6 +25,16 @@ class MembersActivity : AppCompatActivity() {
         }
 
         setupActionBar()
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirebaseUtils().getAssignedMembersListDetails(this, mBoardDetails.assignedTo)
+    }
+
+    fun setupMembersList(list: ArrayList<User>) {
+        hideProgressDialog()
+        rv_members_list.layoutManager = LinearLayoutManager(this)
+        rv_members_list.setHasFixedSize(true)
+        val adapter = MemberListItemAdapter(this, list)
+        rv_members_list.adapter = adapter
     }
 
     private fun setupActionBar() {

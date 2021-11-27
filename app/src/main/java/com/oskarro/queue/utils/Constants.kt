@@ -19,4 +19,6 @@ object Constants {
     const val TITLE: String = "title"
     const val PROCESS_LIST: String = "processList"
     const val BOARD_DETAIL: String = "boardDetail"
+    const val ID: String = "id"
+
 }
