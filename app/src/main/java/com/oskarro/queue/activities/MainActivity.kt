@@ -27,6 +27,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     companion object {
         const val MY_PROFILE_REQUEST_CODE : Int = 11
         const val CREATE_BOARD_REQUEST_CODE : Int = 12
+        const val READ_DATA_REQUEST_CODE : Int = 13
     }
 
     private lateinit var mUserName: String
@@ -120,6 +121,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
                 finish()
+            }
+            R.id.nav_read_data -> {
+                startActivityForResult(Intent(this, GoogleActivity::class.java), READ_DATA_REQUEST_CODE)
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)

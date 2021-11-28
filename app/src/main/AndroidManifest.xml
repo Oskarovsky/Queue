@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Queue">
         <activity
+            android:name=".activities.GoogleWriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.GoogleReadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.GoogleActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ProductDetailsActivity"
             android:exported="false"
             android:screenOrientation="fullSensor"
