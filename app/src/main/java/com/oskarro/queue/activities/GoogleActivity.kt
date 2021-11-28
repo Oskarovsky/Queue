@@ -10,6 +10,7 @@ class GoogleActivity : AppCompatActivity() {
 
     lateinit var btnGoogleRead: Button
     lateinit var btnGoogleWrite: Button
+    lateinit var btnGoogleUpdate: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +18,7 @@ class GoogleActivity : AppCompatActivity() {
 
         btnGoogleRead = findViewById(R.id.btn_read_data_from_google)
         btnGoogleWrite = findViewById(R.id.btn_write_data_into_google)
+        btnGoogleUpdate = findViewById(R.id.btn_update_data_into_google)
 
         btnGoogleRead.setOnClickListener {
             val intent = Intent(this@GoogleActivity, GoogleReadActivity::class.java)
@@ -25,6 +27,11 @@ class GoogleActivity : AppCompatActivity() {
 
         btnGoogleWrite.setOnClickListener {
             val intent = Intent(this@GoogleActivity, GoogleWriteActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnGoogleUpdate.setOnClickListener {
+            val intent = Intent(this@GoogleActivity, GoogleUpdateActivity::class.java)
             startActivity(intent)
         }
     }

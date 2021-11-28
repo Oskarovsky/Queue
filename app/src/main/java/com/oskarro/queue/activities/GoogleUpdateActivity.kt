@@ -9,22 +9,18 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.oskarro.queue.R
 
-class GoogleWriteActivity : BaseActivity() {
+class GoogleUpdateActivity : BaseActivity() {
 
     lateinit var editProductStatus: EditText
-    lateinit var editProductName: EditText
-    lateinit var btnSaveToGoogle: Button
+    lateinit var btnUpdateInSheet: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_google_write)
+        setContentView(R.layout.activity_google_update)
 
-        editProductStatus = findViewById(R.id.edit_product_status)
-        editProductName = findViewById(R.id.edit_product_name)
-        btnSaveToGoogle = findViewById(R.id.btn_save_to_google)
+        btnUpdateInSheet = findViewById(R.id.btn_update_in_sheet)
 
-
-        val spinnerStatus: Spinner = findViewById(R.id.spinner_status)
+        val spinnerStatus: Spinner = findViewById(R.id.spinner_update_status)
         val paths = arrayOf("NEW", "IN-PROGRESS", "DONE")
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, paths)
         spinnerStatus.adapter = arrayAdapter
@@ -38,28 +34,26 @@ class GoogleWriteActivity : BaseActivity() {
             }
         }
 
-
-        btnSaveToGoogle.setOnClickListener {
+        btnUpdateInSheet.setOnClickListener {
             val url: String = "https://script.google.com/macros/s/AKfycbx6GbiYm3055KO_QB3pbJekwrP2GGu1Itbeh2iQCd2VfQFnTY3qeHscVIq6v-D_ulp9/exec"
-            val stringRequest = object: StringRequest(Method.POST, url,
+            val stringRequest = object: StringRequest(
+                Method.POST, url,
                 Response.Listener {
-                    Toast.makeText(this@GoogleWriteActivity, "TEST", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@GoogleUpdateActivity, "TEST", Toast.LENGTH_SHORT).show()
                 },
                 Response.ErrorListener {
-                    Toast.makeText(this@GoogleWriteActivity, "TEST", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@GoogleUpdateActivity, "TEST", Toast.LENGTH_SHORT).show()
                 }
             ) {
                 override fun getParams(): MutableMap<String, String> {
                     val params = HashMap<String, String>()
-                    params["productCode"] = editProductName.text.toString()
+                    params["productCode"] = "A000608" // TODO
                     params["productStatus"] = spinnerStatus.selectedItem.toString()
                     return params
                 }
             }
-            val queue = Volley.newRequestQueue(this@GoogleWriteActivity)
+            val queue = Volley.newRequestQueue(this@GoogleUpdateActivity)
             queue.add(stringRequest)
         }
-
-
     }
 }
