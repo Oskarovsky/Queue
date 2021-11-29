@@ -36,7 +36,6 @@ class ProcessListActivity : BaseActivity() {
     }
 
     override fun onResume() {
-//        showProgressDialog(resources.getString(R.string.please_wait))
         FirebaseUtils().getBoardDetails(this, mBoardDocumentId)
         super.onResume()
     }

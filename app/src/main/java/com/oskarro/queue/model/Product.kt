@@ -3,6 +3,7 @@ package com.oskarro.queue.model
 import android.os.Parcel
 import android.os.Parcelable
 import android.os.WorkSource
+import com.google.api.client.json.Json
 
 data class Product (
     val name: String = "",
@@ -43,4 +44,5 @@ data class Product (
     }
 
     override fun describeContents(): Int = 0
+
 }
