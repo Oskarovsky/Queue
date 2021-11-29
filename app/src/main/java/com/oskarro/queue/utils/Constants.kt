@@ -22,6 +22,8 @@ object Constants {
     const val BOARD_DETAIL: String = "boardDetail"
     const val ID: String = "id"
 
+    const val PRODUCT_ORDER_NUMBER: String = "productOrderNumber"
+
     const val PROCESS_LIST_ITEM_POSITION: String = "processListItemPosition"
     const val PRODUCT_LIST_ITEM_POSITION: String = "productListItemPosition"
 

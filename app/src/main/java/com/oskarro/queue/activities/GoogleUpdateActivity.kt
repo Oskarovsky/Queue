@@ -7,6 +7,8 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.oskarro.queue.R
+import kotlinx.android.synthetic.main.activity_google_read.*
+import kotlinx.android.synthetic.main.activity_google_update.*
 
 class GoogleUpdateActivity : BaseActivity() {
 
@@ -16,6 +18,8 @@ class GoogleUpdateActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_google_update)
+
+        setupActionBar()
 
         btnUpdateInSheet = findViewById(R.id.btn_update_in_sheet)
 
@@ -34,7 +38,7 @@ class GoogleUpdateActivity : BaseActivity() {
         }
 
         btnUpdateInSheet.setOnClickListener {
-            val url: String = "https://script.google.com/macros/s/AKfycbyS0EuhsDf1h49vPVWTRIP71ckAktiO5H9oXraAt6MFQf6BCwOfjVz7dDFHe2xQTy2x/exec"
+            val url = "https://script.google.com/macros/s/AKfycbwRQ0bYKpPifDY_bMyCXl16iJczH1AMeRuGpJBvNd_hxKfctI7Axwor7oCKaCOeyExt/exec"
             val stringRequest = object: StringRequest(
                 Method.POST,
                 url,
@@ -55,5 +59,15 @@ class GoogleUpdateActivity : BaseActivity() {
             val queue = Volley.newRequestQueue(this@GoogleUpdateActivity)
             queue.add(stringRequest)
         }
+    }
+
+    private fun setupActionBar() {
+        setSupportActionBar(toolbar_product_update_activity)
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
+        }
+        toolbar_product_update_activity.setNavigationOnClickListener{ onBackPressed() }
     }
 }

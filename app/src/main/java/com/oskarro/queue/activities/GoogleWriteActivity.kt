@@ -8,6 +8,8 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.oskarro.queue.R
+import kotlinx.android.synthetic.main.activity_google_read.*
+import kotlinx.android.synthetic.main.activity_google_write.*
 
 class GoogleWriteActivity : BaseActivity() {
 
@@ -18,6 +20,8 @@ class GoogleWriteActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_google_write)
+
+        setupActionBar()
 
         editProductStatus = findViewById(R.id.edit_product_status)
         editProductName = findViewById(R.id.edit_product_name)
@@ -40,7 +44,7 @@ class GoogleWriteActivity : BaseActivity() {
 
 
         btnSaveToGoogle.setOnClickListener {
-            val url: String = "https://script.google.com/macros/s/AKfycbx6GbiYm3055KO_QB3pbJekwrP2GGu1Itbeh2iQCd2VfQFnTY3qeHscVIq6v-D_ulp9/exec"
+            val url = "https://script.google.com/macros/s/AKfycbwRQ0bYKpPifDY_bMyCXl16iJczH1AMeRuGpJBvNd_hxKfctI7Axwor7oCKaCOeyExt/exec"
             val stringRequest = object: StringRequest(Method.POST, url,
                 Response.Listener {
                     Toast.makeText(this@GoogleWriteActivity, "TEST", Toast.LENGTH_SHORT).show()
@@ -59,7 +63,15 @@ class GoogleWriteActivity : BaseActivity() {
             val queue = Volley.newRequestQueue(this@GoogleWriteActivity)
             queue.add(stringRequest)
         }
+    }
 
-
+    private fun setupActionBar() {
+        setSupportActionBar(toolbar_product_write_activity)
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
+        }
+        toolbar_product_write_activity.setNavigationOnClickListener{ onBackPressed() }
     }
 }

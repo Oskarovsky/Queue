@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".activities.GoogleWriteActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.Queue.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_product_write_activity"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.Queue.PopupOverlay" />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <EditText
         android:id="@+id/edit_product_status"
         android:layout_width="match_parent"

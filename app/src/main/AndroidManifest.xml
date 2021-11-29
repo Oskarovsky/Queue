@@ -13,17 +13,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Queue">
         <activity
+            android:name=".activities.ProductRowDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.Queue.NoActionBar" />
+        <activity
             android:name=".activities.GoogleUpdateActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.Queue.NoActionBar" />
         <activity
             android:name=".activities.GoogleWriteActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.Queue.NoActionBar" />
         <activity
             android:name=".activities.GoogleReadActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.Queue.NoActionBar" />
         <activity
             android:name=".activities.GoogleActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.Queue.NoActionBar" />
         <activity
             android:name=".activities.ProductDetailsActivity"
             android:exported="false"
