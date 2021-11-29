@@ -35,7 +35,7 @@ class GoogleUpdateActivity : BaseActivity() {
         }
 
         btnUpdateInSheet.setOnClickListener {
-            val url: String = "https://script.google.com/macros/s/AKfycbx6GbiYm3055KO_QB3pbJekwrP2GGu1Itbeh2iQCd2VfQFnTY3qeHscVIq6v-D_ulp9/exec"
+            val url: String = "https://script.google.com/macros/s/AKfycbyS0EuhsDf1h49vPVWTRIP71ckAktiO5H9oXraAt6MFQf6BCwOfjVz7dDFHe2xQTy2x/exec"
             val stringRequest = object: StringRequest(
                 Method.POST, url,
                 Response.Listener {
