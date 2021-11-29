@@ -26,13 +26,6 @@ class ProductDetailsActivity : BaseActivity() {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
-
-            Log.d("XXX1", mBoardDetails.processList.toString())
-            Log.d("XXX11", mProcessListPosition.toString())
-            Log.d("XXX2", mBoardDetails.processList[mProcessListPosition].toString())
-            Log.d("XXX3", mBoardDetails.processList[mProcessListPosition].products.toString())
-            Log.d("XXX4", mProductPosition.toString())
-            Log.d("XXX5", mBoardDetails.processList[mProcessListPosition].products[mProductPosition].toString())
             actionBar.title = mBoardDetails.processList[mProcessListPosition].products[mProductPosition].name
         }
         toolbar_product_details_activity.setNavigationOnClickListener{ onBackPressed() }

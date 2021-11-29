@@ -1,6 +1,5 @@
 package com.oskarro.queue.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -37,7 +36,8 @@ class GoogleUpdateActivity : BaseActivity() {
         btnUpdateInSheet.setOnClickListener {
             val url: String = "https://script.google.com/macros/s/AKfycbyS0EuhsDf1h49vPVWTRIP71ckAktiO5H9oXraAt6MFQf6BCwOfjVz7dDFHe2xQTy2x/exec"
             val stringRequest = object: StringRequest(
-                Method.POST, url,
+                Method.POST,
+                url,
                 Response.Listener {
                     Toast.makeText(this@GoogleUpdateActivity, "TEST", Toast.LENGTH_SHORT).show()
                 },

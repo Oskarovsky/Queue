@@ -67,8 +67,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     startActivity(intent)
                 }
             })
-
-
         } else {
             rv_boards_list.visibility = View.GONE
             tv_no_boards.visibility = View.VISIBLE

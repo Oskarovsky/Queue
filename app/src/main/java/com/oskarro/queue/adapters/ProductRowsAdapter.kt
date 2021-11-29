@@ -5,33 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.oskarro.queue.R
-import com.oskarro.queue.model.Board
-import kotlinx.android.synthetic.main.item_board.view.*
+import com.oskarro.queue.model.ProductDto
+import kotlinx.android.synthetic.main.item_row_product.view.*
 
-open class BoardItemsAdapter(private val context: Context,
-                             private var list: ArrayList<Board>)
+class ProductRowsAdapter(private val context: Context,
+                         private val list: ArrayList<ProductDto>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var onClickListener: OnClickListener? = null
 
+    private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_board, parent, false))
+        return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_row_product, parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = list[position]
 
         if (holder is MyViewHolder) {
-            Glide
-                .with(context)
-                .load(R.drawable.ic_black_color_back_24p)
-                .centerCrop()
-                .into(holder.itemView.iv_board_image)
-
-            holder.itemView.tv_item_board_name.text = model.name
-            holder.itemView.tv_item_board_created_by.text = "Created by ${model.createdBy}"
+            holder.itemView.tv_row_product_code.text = model.orderNumber
+            holder.itemView.tv_row_product_name.text = model.name
+            holder.itemView.tv_row_product_stage.text = model.stage
 
             holder.itemView.setOnClickListener {
                 if (onClickListener != null) {
@@ -39,6 +35,11 @@ open class BoardItemsAdapter(private val context: Context,
                 }
             }
         }
+
+    }
+
+    override fun getItemCount(): Int {
+        return list.size
     }
 
     fun setOnClickListener(onClickListener : OnClickListener){
@@ -46,14 +47,8 @@ open class BoardItemsAdapter(private val context: Context,
     }
 
     interface OnClickListener {
-        fun onClick(position: Int, model: Board)
-    }
-
-    override fun getItemCount(): Int {
-        return list.size
+        fun onClick(position: Int, model: ProductDto)
     }
 
     private class MyViewHolder(view: View): RecyclerView.ViewHolder(view)
-
-
 }
