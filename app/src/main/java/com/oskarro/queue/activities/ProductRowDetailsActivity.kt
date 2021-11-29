@@ -36,6 +36,8 @@ class ProductRowDetailsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_row_details)
 
+        requestQueue = Volley.newRequestQueue(this@ProductRowDetailsActivity)
+
         setupActionBar()
 
         btnUpdateStageInSheet = findViewById(R.id.btn_update_product_row_status)
@@ -50,35 +52,35 @@ class ProductRowDetailsActivity : BaseActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
-        getIntentData()
-        showProgressDialog(resources.getString(R.string.please_wait))
-        Log.d("TEST", "TEST PARAM -- $mProductOrderNumber")
-        requestQueue = Volley.newRequestQueue(this@ProductRowDetailsActivity)
-        fetchProductRowFromSheet(mProductOrderNumber)
-
-
         btnUpdateStageInSheet.setOnClickListener {
             val url = Constants.GOOGLE_SCRIPT
+            showProgressDialog(resources.getString(R.string.please_wait))
             val stringRequest = object: StringRequest(
                 Method.POST,
                 url,
                 Response.Listener {
-                    Toast.makeText(this@ProductRowDetailsActivity, "TEST", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@ProductRowDetailsActivity, GoogleReadActivity::class.java)
+                    hideProgressDialog()
+                    startActivity(intent)
+                    Toast.makeText(this@ProductRowDetailsActivity, "Product stage has been updated", Toast.LENGTH_SHORT).show()
                 },
                 Response.ErrorListener {
-                    Toast.makeText(this@ProductRowDetailsActivity, "TEST", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ProductRowDetailsActivity, "Error has occurred!", Toast.LENGTH_SHORT).show()
                 }
             ) {
                 override fun getParams(): MutableMap<String, String> {
                     val params = HashMap<String, String>()
                     params["productStatus"] = spinnerProductStage.selectedItem.toString()
+                    params["productCode"] = mProductOrderNumber
                     return params
                 }
             }
-            val queue = Volley.newRequestQueue(this@ProductRowDetailsActivity)
-            queue.add(stringRequest)
+            requestQueue?.add(stringRequest)
         }
 
+        getIntentData()
+        showProgressDialog(resources.getString(R.string.please_wait))
+        fetchProductRowFromSheet(mProductOrderNumber)
     }
 
     private fun setupActionBar() {
@@ -97,10 +99,7 @@ class ProductRowDetailsActivity : BaseActivity() {
             Method.GET,
             uri,
             Response.Listener { response ->
-                Log.d("TEST", "TEST PARAM -- $orderNumber")
-                Log.d("TEST", "TEST -- $response")
                 val productJson = JSONObject(response)
-                Log.d("TEST", "TEST JSON-- $productJson")
                 val dto = ProductDto()
                 dto.stage = productJson.getString("productStatus")
                 dto.orderNumber = productJson.getString("productCode")
@@ -109,16 +108,14 @@ class ProductRowDetailsActivity : BaseActivity() {
                 populateProductToUI(dto)
             },
             Response.ErrorListener {
-                Toast.makeText(this@ProductRowDetailsActivity, "ERROR TEST", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ProductRowDetailsActivity, "Error has occurred!", Toast.LENGTH_SHORT).show()
             }
         ) {
         }
         requestQueue?.add(stringRequest)
-        Log.d("TEST", "TEST REQUEST -- $stringRequest")
     }
 
     fun populateProductToUI(productDto: ProductDto) {
-//        val adapter = ProductDtoAdapter(this, productDto)
         tv_row_product_dto_name.text = productDto.name
         tv_row_product_dto_code.text = productDto.orderNumber
         tv_row_product_dto_stage.text = productDto.stage

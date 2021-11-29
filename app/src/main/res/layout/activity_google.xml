@@ -42,9 +42,11 @@
             android:layout_below="@id/btn_read_data_from_google"/>
 
         <Button
+            android:id="@+id/btn_update_data_into_google"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_update_data_into_google"
+            android:background="@color/black"
+            android:textColor="@color/white"
             android:text="Update data from google"
             android:layout_margin="10dp"
             android:textSize="20sp"
