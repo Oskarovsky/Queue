@@ -13,10 +13,12 @@
         <entry key="app/src/main/res/drawable/shape_button_rounded.xml" value="0.3411458333333333" />
         <entry key="app/src/main/res/drawable/shape_dialog_rounded.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/drawable/white_border_shape_button_rounded.xml" value="0.3411458333333333" />
+        <entry key="app/src/main/res/layout/activity_barcode_scan.xml" value="0.33559782608695654" />
         <entry key="app/src/main/res/layout/activity_base.xml" value="0.33177083333333335" />
         <entry key="app/src/main/res/layout/activity_create_board_actibity.xml" value="0.3115942028985507" />
         <entry key="app/src/main/res/layout/activity_google.xml" value="0.35" />
         <entry key="app/src/main/res/layout/activity_google_update.xml" value="0.35" />
+        <entry key="app/src/main/res/layout/activity_google_update_stage_by_code.xml" value="0.33559782608695654" />
         <entry key="app/src/main/res/layout/activity_google_write.xml" value="0.38269927536231885" />
         <entry key="app/src/main/res/layout/activity_intro.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />

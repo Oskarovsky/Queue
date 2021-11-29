@@ -1,7 +1,6 @@
 package com.oskarro.queue.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -11,7 +10,7 @@ import com.android.volley.toolbox.Volley
 import com.oskarro.queue.R
 import com.oskarro.queue.utils.Constants
 import kotlinx.android.synthetic.main.activity_google_read.*
-import kotlinx.android.synthetic.main.activity_google_write.*
+import kotlinx.android.synthetic.main.activity_google_update_stage.*
 
 class GoogleUpdateStageActivity : BaseActivity() {
 
@@ -21,7 +20,7 @@ class GoogleUpdateStageActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_google_write)
+        setContentView(R.layout.activity_google_update_stage)
 
         setupActionBar()
 
@@ -46,9 +45,13 @@ class GoogleUpdateStageActivity : BaseActivity() {
 
 
         btnSaveToGoogle.setOnClickListener {
+            showProgressDialog(resources.getString(R.string.please_wait))
             val url = Constants.GOOGLE_SCRIPT
             val stringRequest = object: StringRequest(Method.POST, url,
                 Response.Listener {
+                    val intent = Intent(this@GoogleUpdateStageActivity, GoogleReadActivity::class.java)
+                    hideProgressDialog()
+                    startActivity(intent)
                     Toast.makeText(this@GoogleUpdateStageActivity, "TEST", Toast.LENGTH_SHORT).show()
                 },
                 Response.ErrorListener {

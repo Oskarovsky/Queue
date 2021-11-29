@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activities.GoogleUpdateStageByCodeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -12,12 +13,30 @@
         android:theme="@style/Theme.Queue.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_product_update_activity"
+            android:id="@+id/toolbar_product_update_by_code_activity"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.Queue.PopupOverlay" />
     </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn"
+        android:text="Scan Barcode or QR code" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvresult"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Result will be here"/>
+
 
     <Spinner
         android:id="@+id/spinner_update_status"
@@ -31,8 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#8EFFAD"
-        android:text="Save to google"
-        android:layout_below="@+id/spinner_update_status"
+        android:text="Update stage"
         android:textColor="@color/black"/>
 
-</RelativeLayout>
+
+</LinearLayout>

@@ -10,16 +10,17 @@ import com.android.volley.toolbox.Volley
 import com.oskarro.queue.R
 import com.oskarro.queue.utils.Constants
 import kotlinx.android.synthetic.main.activity_google_read.*
-import kotlinx.android.synthetic.main.activity_google_update.*
+import kotlinx.android.synthetic.main.activity_google_update_stage_by_code.*
 
 class GoogleUpdateStageByCodeActivity : BaseActivity() {
 
     lateinit var editProductStatus: EditText
     lateinit var btnUpdateInSheet: Button
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_google_update)
+        setContentView(R.layout.activity_google_update_stage_by_code)
 
         setupActionBar()
 
@@ -64,13 +65,13 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
     }
 
     private fun setupActionBar() {
-        setSupportActionBar(toolbar_product_update_activity)
+        setSupportActionBar(toolbar_product_update_by_code_activity)
         val actionBar = supportActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
         }
-        toolbar_product_update_activity.setNavigationOnClickListener {
+        toolbar_product_update_by_code_activity.setNavigationOnClickListener {
             startActivity(Intent(this@GoogleUpdateStageByCodeActivity, GoogleActivity::class.java))
         }
     }
