@@ -18,12 +18,12 @@
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.Queue.NoActionBar" />
         <activity
-            android:name=".activities.GoogleUpdateActivity"
+            android:name=".activities.GoogleUpdateStageByCodeActivity"
             android:exported="false"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.Queue.NoActionBar" />
         <activity
-            android:name=".activities.GoogleWriteActivity"
+            android:name=".activities.GoogleUpdateStageActivity"
             android:exported="false"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.Queue.NoActionBar" />

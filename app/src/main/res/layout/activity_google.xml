@@ -28,29 +28,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_read_data_from_google"
-            android:text="Read data from google"
+            android:text="Get products from sheet"
             android:layout_margin="10dp"
             android:textSize="20sp"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_write_data_into_google"
-            android:text="Write data into google"
+            android:id="@+id/btn_update_product_stage_into_google"
+            android:text="Update product stage"
             android:layout_margin="10dp"
             android:textSize="20sp"
             android:layout_below="@id/btn_read_data_from_google"/>
 
         <Button
-            android:id="@+id/btn_update_data_into_google"
+            android:id="@+id/btn_update_product_stage_by_barcode_into_google"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/black"
             android:textColor="@color/white"
-            android:text="Update data from google"
+            android:text="Update product stage by code"
             android:layout_margin="10dp"
             android:textSize="20sp"
-            android:layout_below="@id/btn_write_data_into_google"/>
+            android:layout_below="@id/btn_update_product_stage_into_google"/>
 
     </RelativeLayout>
 

@@ -1,5 +1,6 @@
 package com.oskarro.queue.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,7 +13,7 @@ import com.oskarro.queue.utils.Constants
 import kotlinx.android.synthetic.main.activity_google_read.*
 import kotlinx.android.synthetic.main.activity_google_write.*
 
-class GoogleWriteActivity : BaseActivity() {
+class GoogleUpdateStageActivity : BaseActivity() {
 
     lateinit var editProductStatus: EditText
     lateinit var editProductName: EditText
@@ -48,10 +49,10 @@ class GoogleWriteActivity : BaseActivity() {
             val url = Constants.GOOGLE_SCRIPT
             val stringRequest = object: StringRequest(Method.POST, url,
                 Response.Listener {
-                    Toast.makeText(this@GoogleWriteActivity, "TEST", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@GoogleUpdateStageActivity, "TEST", Toast.LENGTH_SHORT).show()
                 },
                 Response.ErrorListener {
-                    Toast.makeText(this@GoogleWriteActivity, "TEST", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@GoogleUpdateStageActivity, "TEST", Toast.LENGTH_SHORT).show()
                 }
             ) {
                 override fun getParams(): MutableMap<String, String> {
@@ -61,7 +62,7 @@ class GoogleWriteActivity : BaseActivity() {
                     return params
                 }
             }
-            val queue = Volley.newRequestQueue(this@GoogleWriteActivity)
+            val queue = Volley.newRequestQueue(this@GoogleUpdateStageActivity)
             queue.add(stringRequest)
         }
     }
@@ -73,6 +74,8 @@ class GoogleWriteActivity : BaseActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
         }
-        toolbar_product_write_activity.setNavigationOnClickListener{ onBackPressed() }
+        toolbar_product_write_activity.setNavigationOnClickListener{
+            startActivity(Intent(this@GoogleUpdateStageActivity, GoogleActivity::class.java))
+        }
     }
 }

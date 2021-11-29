@@ -1,5 +1,6 @@
 package com.oskarro.queue.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -11,7 +12,7 @@ import com.oskarro.queue.utils.Constants
 import kotlinx.android.synthetic.main.activity_google_read.*
 import kotlinx.android.synthetic.main.activity_google_update.*
 
-class GoogleUpdateActivity : BaseActivity() {
+class GoogleUpdateStageByCodeActivity : BaseActivity() {
 
     lateinit var editProductStatus: EditText
     lateinit var btnUpdateInSheet: Button
@@ -44,10 +45,10 @@ class GoogleUpdateActivity : BaseActivity() {
                 Method.POST,
                 url,
                 Response.Listener {
-                    Toast.makeText(this@GoogleUpdateActivity, "TEST", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@GoogleUpdateStageByCodeActivity, "TEST", Toast.LENGTH_SHORT).show()
                 },
                 Response.ErrorListener {
-                    Toast.makeText(this@GoogleUpdateActivity, "TEST", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@GoogleUpdateStageByCodeActivity, "TEST", Toast.LENGTH_SHORT).show()
                 }
             ) {
                 override fun getParams(): MutableMap<String, String> {
@@ -57,7 +58,7 @@ class GoogleUpdateActivity : BaseActivity() {
                     return params
                 }
             }
-            val queue = Volley.newRequestQueue(this@GoogleUpdateActivity)
+            val queue = Volley.newRequestQueue(this@GoogleUpdateStageByCodeActivity)
             queue.add(stringRequest)
         }
     }
@@ -69,6 +70,8 @@ class GoogleUpdateActivity : BaseActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
         }
-        toolbar_product_update_activity.setNavigationOnClickListener{ onBackPressed() }
+        toolbar_product_update_activity.setNavigationOnClickListener {
+            startActivity(Intent(this@GoogleUpdateStageByCodeActivity, GoogleActivity::class.java))
+        }
     }
 }

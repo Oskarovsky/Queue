@@ -106,7 +106,9 @@ class GoogleReadActivity : BaseActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
         }
-        toolbar_product_read_activity.setNavigationOnClickListener{ onBackPressed() }
+        toolbar_product_read_activity.setNavigationOnClickListener{
+            startActivity(Intent(this@GoogleReadActivity, GoogleActivity::class.java))
+        }
     }
 
 }

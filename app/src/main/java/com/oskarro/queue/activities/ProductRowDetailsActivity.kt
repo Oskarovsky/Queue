@@ -90,7 +90,9 @@ class ProductRowDetailsActivity : BaseActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
         }
-        toolbar_product_row_details_activity.setNavigationOnClickListener{ onBackPressed() }
+        toolbar_product_row_details_activity.setNavigationOnClickListener{
+            startActivity(Intent(this@ProductRowDetailsActivity, GoogleReadActivity::class.java))
+        }
     }
 
     private fun fetchProductRowFromSheet(orderNumber: String) {
