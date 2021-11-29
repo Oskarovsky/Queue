@@ -27,4 +27,6 @@ object Constants {
     const val PROCESS_LIST_ITEM_POSITION: String = "processListItemPosition"
     const val PRODUCT_LIST_ITEM_POSITION: String = "productListItemPosition"
 
+    const val GOOGLE_SCRIPT: String = "https://script.google.com/macros/s/AKfycbyErdKOed1IGekgbXnkd9c_o2-yISynvf2BHtEXzABLjDM9s_QzxPFxxSYoHy9pc6Aw/exec"
+
 }

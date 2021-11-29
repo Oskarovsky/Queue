@@ -15,8 +15,6 @@ class ProductRowsAdapter(private val context: Context,
 
     private var onClickListener: OnClickListener? = null
 
-    private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_row_product, parent, false))
     }
@@ -35,7 +33,6 @@ class ProductRowsAdapter(private val context: Context,
                 }
             }
         }
-
     }
 
     override fun getItemCount(): Int {

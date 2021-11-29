@@ -7,6 +7,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.oskarro.queue.R
+import com.oskarro.queue.utils.Constants
 import kotlinx.android.synthetic.main.activity_google_read.*
 import kotlinx.android.synthetic.main.activity_google_update.*
 
@@ -38,7 +39,7 @@ class GoogleUpdateActivity : BaseActivity() {
         }
 
         btnUpdateInSheet.setOnClickListener {
-            val url = "https://script.google.com/macros/s/AKfycbwRQ0bYKpPifDY_bMyCXl16iJczH1AMeRuGpJBvNd_hxKfctI7Axwor7oCKaCOeyExt/exec"
+            val url = Constants.GOOGLE_SCRIPT
             val stringRequest = object: StringRequest(
                 Method.POST,
                 url,

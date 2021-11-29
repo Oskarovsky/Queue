@@ -40,12 +40,10 @@ class GoogleReadActivity : BaseActivity() {
         showProgressDialog(resources.getString(R.string.please_wait))
         requestQueue = Volley.newRequestQueue(this@GoogleReadActivity)
         fetchDataFromSheet()
-        Log.d("TEST_MAIN", "TEST -- $arrayProducts")
-
     }
 
     private fun fetchDataFromSheet() {
-        val url = "https://script.google.com/macros/s/AKfycbwRQ0bYKpPifDY_bMyCXl16iJczH1AMeRuGpJBvNd_hxKfctI7Axwor7oCKaCOeyExt/exec"
+        val url = Constants.GOOGLE_SCRIPT
         val stringRequest = object: StringRequest(
             Method.GET,
             url,
