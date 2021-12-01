@@ -8,15 +8,20 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.oskarro.queue.R
+import com.oskarro.queue.model.ProductDto
 import com.oskarro.queue.utils.Constants
 import kotlinx.android.synthetic.main.activity_google_read.*
 import kotlinx.android.synthetic.main.activity_google_update_stage_by_code.*
+import kotlinx.android.synthetic.main.activity_product_row_details.*
+import org.json.JSONObject
 
 class GoogleUpdateStageByCodeActivity : BaseActivity() {
 
     lateinit var btnUpdateInSheet: Button
     lateinit var btnScanCode: Button
-    lateinit var tvCodeResult: TextView
+    lateinit var tvProductCodeResult: TextView
+    lateinit var tvProductCurrentStage: TextView
+    lateinit var tvProductName: TextView
 
     private lateinit var mOrderNumber: String
 
@@ -29,7 +34,9 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
 
         btnUpdateInSheet = findViewById(R.id.btn_update_in_sheet)
         btnScanCode = findViewById(R.id.btn_scan_code)
-        tvCodeResult = findViewById(R.id.tv_code_result)
+        tvProductCodeResult = findViewById(R.id.tv_product_code_result)
+        tvProductCurrentStage = findViewById(R.id.tv_product_current_stage)
+        tvProductName = findViewById(R.id.tv_product_current_name)
 
         btnScanCode.setOnClickListener {
             startActivity(Intent(this@GoogleUpdateStageByCodeActivity, BarcodeScannerActivity::class.java))
@@ -37,7 +44,8 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
 
         if (intent.hasExtra("orderNumber")) {
             mOrderNumber = intent.getStringExtra("orderNumber").toString()
-            tvCodeResult.text = mOrderNumber
+            tvProductCodeResult.text = mOrderNumber
+//            TODO fetchProductRowFromSheet(mOrderNumber)
         }
 
         val spinnerStatus: Spinner = findViewById(R.id.spinner_update_status)
@@ -70,7 +78,7 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
             ) {
                 override fun getParams(): MutableMap<String, String> {
                     val params = HashMap<String, String>()
-                    params["productCode"] = mOrderNumber // TODO
+                    params["productCode"] = mOrderNumber
                     params["productStatus"] = spinnerStatus.selectedItem.toString()
                     return params
                 }
@@ -90,5 +98,35 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
         toolbar_product_update_by_code_activity.setNavigationOnClickListener {
             startActivity(Intent(this@GoogleUpdateStageByCodeActivity, GoogleActivity::class.java))
         }
+    }
+
+
+    private fun fetchProductRowFromSheet(orderNumber: String) {
+        val uri = Constants.GOOGLE_SCRIPT + "?requestMethod=SINGLE&productCode=$orderNumber"
+        val stringRequest = object: StringRequest(
+            Method.GET,
+            uri,
+            Response.Listener { response ->
+                val productJson = JSONObject(response)
+                val dto = ProductDto()
+                dto.stage = productJson.getString("productStatus")
+                dto.orderNumber = productJson.getString("productCode")
+                dto.name = productJson.getString("productName")
+                hideProgressDialog()
+//                populateProductToUI(dto)
+            },
+            Response.ErrorListener {
+                Toast.makeText(this@GoogleUpdateStageByCodeActivity, "Error has occurred!", Toast.LENGTH_SHORT).show()
+            }
+        ) {
+        }
+        val queue = Volley.newRequestQueue(this@GoogleUpdateStageByCodeActivity)
+        queue.add(stringRequest)
+    }
+
+    fun populateProductToUI(productDto: ProductDto) {
+        tvProductCurrentStage.text = productDto.stage
+        tvProductCodeResult.text = productDto.orderNumber
+        tvProductName.text = productDto.name
     }
 }
