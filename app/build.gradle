@@ -59,8 +59,14 @@ dependencies {
     implementation 'com.google.api-client:google-api-client:1.32.1'
     implementation 'com.google.apis:google-api-services-sheets:v4-rev581-1.25.0'
 
-
     implementation 'com.android.volley:volley:1.2.1'
+
+
+    // Barcode scanning API
+    implementation 'com.google.mlkit:barcode-scanning:17.0.0'// CameraX library
+    implementation "androidx.camera:camera-camera2:1.0.2"
+    implementation "androidx.camera:camera-lifecycle:1.0.2"
+    implementation "androidx.camera:camera-view:1.0.0-alpha28"
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     testImplementation 'junit:junit:4.+'

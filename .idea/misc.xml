@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../layout/custom_preview.xml" value="0.415625" />
         <entry key="../../../../.gradle/caches/transforms-3/663915e395b03d0c16bdb28e46f8db1b/transformed/appcompat-1.2.0/res/layout/support_simple_spinner_dropdown_item.xml" value="0.3292572463768116" />
         <entry key="app/src/main/res/drawable/ic_board_place_holder.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/drawable/ic_check_blue.xml" value="0.4" />
@@ -14,6 +15,7 @@
         <entry key="app/src/main/res/drawable/shape_dialog_rounded.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/drawable/white_border_shape_button_rounded.xml" value="0.3411458333333333" />
         <entry key="app/src/main/res/layout/activity_barcode_scan.xml" value="0.33559782608695654" />
+        <entry key="app/src/main/res/layout/activity_barcode_scanner.xml" value="0.32563405797101447" />
         <entry key="app/src/main/res/layout/activity_base.xml" value="0.33177083333333335" />
         <entry key="app/src/main/res/layout/activity_create_board_actibity.xml" value="0.3115942028985507" />
         <entry key="app/src/main/res/layout/activity_google.xml" value="0.35" />

@@ -47,15 +47,17 @@ class GoogleUpdateStageActivity : BaseActivity() {
         btnSaveToGoogle.setOnClickListener {
             showProgressDialog(resources.getString(R.string.please_wait))
             val url = Constants.GOOGLE_SCRIPT
-            val stringRequest = object: StringRequest(Method.POST, url,
+            val stringRequest = object: StringRequest(
+                Method.POST,
+                url,
                 Response.Listener {
                     val intent = Intent(this@GoogleUpdateStageActivity, GoogleReadActivity::class.java)
                     hideProgressDialog()
                     startActivity(intent)
-                    Toast.makeText(this@GoogleUpdateStageActivity, "TEST", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@GoogleUpdateStageActivity, "Product stage updated", Toast.LENGTH_SHORT).show()
                 },
                 Response.ErrorListener {
-                    Toast.makeText(this@GoogleUpdateStageActivity, "TEST", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@GoogleUpdateStageActivity, "Could not update product stage", Toast.LENGTH_SHORT).show()
                 }
             ) {
                 override fun getParams(): MutableMap<String, String> {

@@ -23,17 +23,23 @@
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="10dp"
         android:layout_height="wrap_content"
-        android:id="@+id/btn"
+        android:gravity="center_horizontal"
+        android:id="@+id/btn_scan_code"
         android:text="Scan Barcode or QR code" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvresult"
+        android:id="@+id/tv_code_result"
         android:textColor="#000"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Result will be here"/>
 
@@ -42,6 +48,7 @@
         android:id="@+id/spinner_update_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"/>
 
@@ -50,6 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#8EFFAD"
+        android:gravity="center"
         android:text="Update stage"
         android:textColor="@color/black"/>
 

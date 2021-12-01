@@ -14,8 +14,11 @@ import kotlinx.android.synthetic.main.activity_google_update_stage_by_code.*
 
 class GoogleUpdateStageByCodeActivity : BaseActivity() {
 
-    lateinit var editProductStatus: EditText
     lateinit var btnUpdateInSheet: Button
+    lateinit var btnScanCode: Button
+    lateinit var tvCodeResult: TextView
+
+    private lateinit var mOrderNumber: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +28,17 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
         setupActionBar()
 
         btnUpdateInSheet = findViewById(R.id.btn_update_in_sheet)
+        btnScanCode = findViewById(R.id.btn_scan_code)
+        tvCodeResult = findViewById(R.id.tv_code_result)
+
+        btnScanCode.setOnClickListener {
+            startActivity(Intent(this@GoogleUpdateStageByCodeActivity, BarcodeScannerActivity::class.java))
+        }
+
+        if (intent.hasExtra("orderNumber")) {
+            mOrderNumber = intent.getStringExtra("orderNumber").toString()
+            tvCodeResult.text = mOrderNumber
+        }
 
         val spinnerStatus: Spinner = findViewById(R.id.spinner_update_status)
         val paths = arrayOf("NEW", "IN-PROGRESS", "DONE")
@@ -41,20 +55,22 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
         }
 
         btnUpdateInSheet.setOnClickListener {
+            showProgressDialog(resources.getString(R.string.please_wait))
             val url = Constants.GOOGLE_SCRIPT
             val stringRequest = object: StringRequest(
                 Method.POST,
                 url,
                 Response.Listener {
-                    Toast.makeText(this@GoogleUpdateStageByCodeActivity, "TEST", Toast.LENGTH_SHORT).show()
+                    hideProgressDialog()
+                    Toast.makeText(this@GoogleUpdateStageByCodeActivity, "Product stage updated", Toast.LENGTH_SHORT).show()
                 },
                 Response.ErrorListener {
-                    Toast.makeText(this@GoogleUpdateStageByCodeActivity, "TEST", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@GoogleUpdateStageByCodeActivity, "Could not update product stage", Toast.LENGTH_SHORT).show()
                 }
             ) {
                 override fun getParams(): MutableMap<String, String> {
                     val params = HashMap<String, String>()
-                    params["productCode"] = "A000608" // TODO
+                    params["productCode"] = mOrderNumber // TODO
                     params["productStatus"] = spinnerStatus.selectedItem.toString()
                     return params
                 }
