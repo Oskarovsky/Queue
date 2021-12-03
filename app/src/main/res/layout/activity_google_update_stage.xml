@@ -52,6 +52,7 @@
         android:textColor="#000"
         android:layout_marginBottom="15dp"
         android:gravity="center"
+        android:layout_below="@id/edit_product_name"
         android:layout_marginTop="15dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Choose stage"/>
@@ -61,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/btn_dropdown"
-        android:layout_below="@id/edit_product_name"
+        android:layout_below="@id/et_product_current_stage"
         android:spinnerMode="dropdown"/>
 
     <Button
