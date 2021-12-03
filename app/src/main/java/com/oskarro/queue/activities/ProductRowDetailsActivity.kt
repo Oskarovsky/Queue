@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_product_row_details.*
 import org.json.JSONObject
 import android.R.string.no
 import android.widget.*
+import com.oskarro.queue.model.Stage
 import com.oskarro.queue.utils.SheetValues
 
 
@@ -44,8 +45,8 @@ class ProductRowDetailsActivity : BaseActivity() {
         btnUpdateStageInSheet = findViewById(R.id.btn_update_product_row_status)
 
         val spinnerProductStage: Spinner = findViewById(R.id.spinner_product_status)
-        val paths = arrayOf("NEW", "IN-PROGRESS", "DONE")
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, paths)
+        val availableStages = Stage.values().map { it.toString() }
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, availableStages)
         spinnerProductStage.adapter = arrayAdapter
 
         spinnerProductStage.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
