@@ -28,7 +28,6 @@ class BarcodeScannerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setupActionBar()
         binding = ActivityBarcodeScannerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -44,17 +43,6 @@ class BarcodeScannerActivity : AppCompatActivity() {
         cameraExecutor.shutdown()
     }
 
-//    private fun setupActionBar() {
-//        setSupportActionBar(toolbar_barcode_scanner_activity)
-//        val actionBar = supportActionBar
-//        if (actionBar != null) {
-//            actionBar.setDisplayHomeAsUpEnabled(true)
-//            actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
-//        }
-//        toolbar_barcode_scanner_activity.setNavigationOnClickListener {
-//            startActivity(Intent(this@BarcodeScannerActivity, GoogleUpdateStageByCodeActivity::class.java))
-//        }
-//    }
 
     /**
      * 1. This function is responsible to request the required CAMERA permission

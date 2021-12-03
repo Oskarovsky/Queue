@@ -8,7 +8,7 @@ object NonActivityUtil {
     fun startNewActivity(context: Context, clazz: Class<*>, extras: String?) {
         val intent = Intent(context, clazz)
         // To pass any data to next activity
-        intent.putExtra("orderNumber", extras)
+        intent.putExtra(Constants.ORDER_NUMBER, extras)
         // start your next activity
         context.startActivity(intent)
     }

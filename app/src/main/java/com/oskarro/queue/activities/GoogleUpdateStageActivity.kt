@@ -8,6 +8,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.oskarro.queue.R
+import com.oskarro.queue.model.Stage
 import com.oskarro.queue.utils.Constants
 import kotlinx.android.synthetic.main.activity_google_read.*
 import kotlinx.android.synthetic.main.activity_google_update_stage.*
@@ -30,17 +31,13 @@ class GoogleUpdateStageActivity : BaseActivity() {
 
 
         val spinnerStatus: Spinner = findViewById(R.id.spinner_status)
-        val paths = arrayOf("NEW", "IN-PROGRESS", "DONE")
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, paths)
+        val availableStages = Stage.values().map { it.toString() }
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, availableStages)
         spinnerStatus.adapter = arrayAdapter
 
         spinnerStatus.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {}
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
 

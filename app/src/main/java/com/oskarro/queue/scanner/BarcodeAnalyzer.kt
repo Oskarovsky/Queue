@@ -59,19 +59,10 @@ class BarcodeAnalyzer(
                     if (barcodes.isNotEmpty()) {
                         for (barcode in barcodes) {
                             // Handle received barcodes...
-                            Toast.makeText(
-                                context,
-                                "Value: " + barcode.rawValue,
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
+                            Toast.makeText(context, "Value: " + barcode.rawValue, Toast.LENGTH_SHORT).show()
                             // Update bounding rect
                             barcode.boundingBox?.let { rect ->
-                                barcodeBoxView.setRect(
-                                    adjustBoundingRect(
-                                        rect
-                                    )
-                                )
+                                barcodeBoxView.setRect(adjustBoundingRect(rect))
                             }
                             NonActivityUtil.startNewActivity(context, GoogleUpdateStageByCodeActivity::class.java, barcode.rawValue)
                         }

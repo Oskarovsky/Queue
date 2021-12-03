@@ -9,7 +9,9 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.oskarro.queue.R
 import com.oskarro.queue.model.ProductDto
+import com.oskarro.queue.model.Stage
 import com.oskarro.queue.utils.Constants
+import com.oskarro.queue.utils.SheetValues
 import kotlinx.android.synthetic.main.activity_google_read.*
 import kotlinx.android.synthetic.main.activity_google_update_stage_by_code.*
 import kotlinx.android.synthetic.main.activity_product_row_details.*
@@ -50,17 +52,13 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
         }
 
         val spinnerStatus: Spinner = findViewById(R.id.spinner_update_status)
-        val paths = arrayOf("NEW", "BACKLOG", "IN-PROGRESS", "WAITING", "DONE")
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, paths)
+        val availableStages = Stage.values().map { it.toString() }
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, availableStages)
         spinnerStatus.adapter = arrayAdapter
 
         spinnerStatus.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {}
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
         btnUpdateInSheet.setOnClickListener {
@@ -110,9 +108,9 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
             Response.Listener { response ->
                 val productJson = JSONObject(response)
                 val dto = ProductDto()
-                dto.stage = productJson.getString("productStatus")
-                dto.orderNumber = productJson.getString("productCode")
-                dto.name = productJson.getString("productName")
+                dto.stage = productJson.getString(SheetValues.STAGE)
+                dto.orderNumber = productJson.getString(SheetValues.CODE)
+                dto.name = productJson.getString(SheetValues.NAME)
                 hideProgressDialog()
                 populateProductToUI(dto)
             },

@@ -15,6 +15,8 @@ import com.oskarro.queue.adapters.ProductRowsAdapter
 import com.oskarro.queue.model.Board
 import com.oskarro.queue.model.ProductDto
 import com.oskarro.queue.utils.Constants
+import com.oskarro.queue.utils.SheetValues
+import com.oskarro.queue.utils.SheetValues.MULTI_REQUEST
 import kotlinx.android.synthetic.main.activity_google_read.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_product_row_details.*
@@ -23,9 +25,6 @@ import kotlinx.android.synthetic.main.main_content.*
 import org.json.JSONObject
 
 class GoogleReadActivity : BaseActivity() {
-
-    private lateinit var mBoardDetails: Board
-    private lateinit var mBoardDocumentId: String
 
     private var requestQueue: RequestQueue? = null
 
@@ -49,24 +48,24 @@ class GoogleReadActivity : BaseActivity() {
             url,
             Response.Listener { response ->
                 val jsonObj = JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1))
-                val productJson = jsonObj.getJSONArray("products")
+                val productJson = jsonObj.getJSONArray(SheetValues.PRODUCTS)
                 for (i in 0..productJson.length() - 1) {
                     val dto = ProductDto()
-                    dto.stage = productJson.getJSONObject(i).getString("productStatus")
-                    dto.orderNumber = productJson.getJSONObject(i).getString("productCode")
-                    dto.name = productJson.getJSONObject(i).getString("productName")
+                    dto.stage = productJson.getJSONObject(i).getString(SheetValues.STAGE)
+                    dto.orderNumber = productJson.getJSONObject(i).getString(SheetValues.CODE)
+                    dto.name = productJson.getJSONObject(i).getString(SheetValues.NAME)
                     arrayProducts.add(dto)
                 }
-                hideProgressDialog()
                 populateProductsListToUI(arrayProducts)
+                hideProgressDialog()
             },
             Response.ErrorListener {
-                Toast.makeText(this@GoogleReadActivity, "ERROR TEST", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@GoogleReadActivity, "Error has occurred!", Toast.LENGTH_SHORT).show()
             }
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
-                params["requestMethod"] = "MULTI"
+                params["requestMethod"] = MULTI_REQUEST
                 return params
             }
 

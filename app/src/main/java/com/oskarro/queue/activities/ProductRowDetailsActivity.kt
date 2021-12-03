@@ -103,11 +103,16 @@ class ProductRowDetailsActivity : BaseActivity() {
             Response.Listener { response ->
                 val productJson = JSONObject(response)
                 val dto = ProductDto()
-                dto.stage = productJson.getString("productStatus")
+                dto.stage = productJson.getString("productStage")
                 dto.orderNumber = productJson.getString("productCode")
                 dto.name = productJson.getString("productName")
-                hideProgressDialog()
+                dto.invoiceNumber = productJson.getString("productInvoiceNumber")
+                dto.client = productJson.getString("productClient")
+                dto.productType = productJson.getString("productType")
+                dto.quantity = productJson.getString("productQuantity")
+                dto.price = productJson.getString("productPrice")
                 populateProductToUI(dto)
+                hideProgressDialog()
             },
             Response.ErrorListener {
                 Toast.makeText(this@ProductRowDetailsActivity, "Error has occurred!", Toast.LENGTH_SHORT).show()

@@ -27,6 +27,6 @@ object Constants {
     const val PROCESS_LIST_ITEM_POSITION: String = "processListItemPosition"
     const val PRODUCT_LIST_ITEM_POSITION: String = "productListItemPosition"
 
-    const val GOOGLE_SCRIPT: String = "https://script.google.com/macros/s/AKfycbyErdKOed1IGekgbXnkd9c_o2-yISynvf2BHtEXzABLjDM9s_QzxPFxxSYoHy9pc6Aw/exec"
+    const val GOOGLE_SCRIPT: String = "https://script.google.com/macros/s/AKfycbzV5tFjxCyewsEXDtJVUPm34cNI1HSPUm-N0uPYy7fG_Xxd7R7eNh4PHZ7prVonGgDO/exec"
 
 }

@@ -65,5 +65,10 @@ class ProductResponse(json: String) : JSONObject(json) {
 data class ProductDto(
     var orderNumber: String = "",
     var name: String = "",
-    var stage: String? = ""
+    var stage: String? = "",
+    var invoiceNumber: String = "",
+    var client: String = "",
+    var productType: String = "",
+    var quantity: String = "",
+    var price: String = "",
 )

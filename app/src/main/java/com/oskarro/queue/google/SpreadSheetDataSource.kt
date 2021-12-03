@@ -9,6 +9,8 @@ import com.oskarro.queue.model.Product
 
 class SpreadSheetDataSource {
 
+    // TODO use google sheet api
+
     // 1
     private val transport = GoogleNetHttpTransport.newTrustedTransport()
     // 2
@@ -43,9 +45,5 @@ class SpreadSheetDataSource {
         orderNumber = stringFor("Index"),
         stage = stringFor("stage")
     )
-//
-//    val response: BatchGetValuesResponse = sheets.spreadsheets().values()
-//        .batchGet(sheetId).setRanges(listOf("items!A3:Z", "siteinfo!A3:Z"))
-//        .execute();
 
 }
