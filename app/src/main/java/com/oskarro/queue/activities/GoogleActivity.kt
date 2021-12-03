@@ -3,10 +3,15 @@ package com.oskarro.queue.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
+import androidx.core.view.GravityCompat
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.oskarro.queue.R
 import kotlinx.android.synthetic.main.activity_google.*
 import kotlinx.android.synthetic.main.activity_google_read.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class GoogleActivity : AppCompatActivity() {
 
@@ -47,7 +52,8 @@ class GoogleActivity : AppCompatActivity() {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
+            actionBar.title = resources.getString(R.string.main_board_title)
         }
-        toolbar_google_activity.setNavigationOnClickListener{ onBackPressed() }
+        toolbar_google_activity.setNavigationOnClickListener { onBackPressed() }
     }
 }

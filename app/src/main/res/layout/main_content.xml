@@ -31,7 +31,7 @@
             android:gravity="center"
             android:textColor="@color/secondary_text_color"
             android:textSize="18sp"
-            android:text="@string/no_boards_available"
+            android:text="@string/welcome_notification"
             android:id="@+id/tv_no_boards"/>
 
     </androidx.cardview.widget.CardView>

@@ -95,6 +95,7 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
+            actionBar.title = resources.getString(R.string.product_stage_board_title)
         }
         toolbar_product_update_by_code_activity.setNavigationOnClickListener {
             startActivity(Intent(this@GoogleUpdateStageByCodeActivity, GoogleActivity::class.java))

@@ -104,6 +104,7 @@ class GoogleReadActivity : BaseActivity() {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
+            actionBar.title = resources.getString(R.string.product_list_board_title)
         }
         toolbar_product_read_activity.setNavigationOnClickListener{
             startActivity(Intent(this@GoogleReadActivity, GoogleActivity::class.java))

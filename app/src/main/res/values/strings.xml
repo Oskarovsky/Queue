@@ -22,10 +22,11 @@
     <string name="please_wait">Please wait…</string>
     <string name="please_click_back_again_to_exit">please click back again to exit</string>
     <string name="no_boards_available">No Boards Available!</string>
+    <string name="welcome_notification">Welcome to the product support application!</string>
 
     <string name="nav_my_profile">My profile</string>
     <string name="nav_sign_out">Sign out</string>
-    <string name="nav_read_data">Read data</string>
+    <string name="nav_read_data">Product area</string>
 
     <string name="mobile">Mobile</string>
     <string name="update">UPDATE</string>
@@ -46,6 +47,11 @@
     <string name="select_members">Select members</string>
     <string name="due_date">Due date</string>
     <string name="select_due_date">Select due date</string>
+
+    <string name="main_board_title">Queue products</string>
+    <string name="product_list_board_title">All products</string>
+    <string name="product_stage_board_title">Product stage panel</string>
+    <string name="product_details_board_title">Product details</string>
 
 
 </resources>

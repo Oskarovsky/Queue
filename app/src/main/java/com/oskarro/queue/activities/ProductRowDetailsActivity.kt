@@ -91,6 +91,7 @@ class ProductRowDetailsActivity : BaseActivity() {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
+            actionBar.title = resources.getString(R.string.product_details_board_title)
         }
         toolbar_product_row_details_activity.setNavigationOnClickListener{
             startActivity(Intent(this@ProductRowDetailsActivity, GoogleReadActivity::class.java))

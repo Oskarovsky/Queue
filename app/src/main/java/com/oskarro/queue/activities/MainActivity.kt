@@ -79,6 +79,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         toolbar_main_activity.setNavigationOnClickListener {
             toggleDrawer()
         }
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.title = "Display options"
+        }
     }
 
     private fun toggleDrawer() {
