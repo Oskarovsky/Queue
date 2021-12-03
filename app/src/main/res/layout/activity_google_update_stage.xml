@@ -44,6 +44,18 @@
         android:autofillHints=""
         android:inputType="text" />
 
+
+    <TextView
+        android:id="@+id/et_product_current_stage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Choose stage"/>
+
     <Spinner
         android:id="@+id/spinner_status"
         android:layout_width="match_parent"

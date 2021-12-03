@@ -20,68 +20,121 @@
             app:popupTheme="@style/Theme.Queue.PopupOverlay" />
     </com.google.android.material.appbar.AppBarLayout>
 
-
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="10dp"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:id="@+id/btn_scan_code"
-        android:text="Scan Barcode or QR code" />
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_product_code_result"
-        android:textColor="#000"
-        android:layout_marginBottom="15dp"
-        android:gravity="center"
-        android:layout_marginTop="15dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Result will be here"/>
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_product_current_stage"
-        android:textColor="#000"
-        android:layout_marginBottom="15dp"
-        android:gravity="center"
-        android:layout_marginTop="15dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Current stage be here"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/btn_scan_code"
+            android:text="Scan Barcode or QR code" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_product_current_name"
-        android:textColor="#000"
-        android:layout_marginBottom="15dp"
-        android:gravity="center"
-        android:layout_marginTop="15dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Product name be here"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="10dp"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
 
 
-    <Spinner
-        android:id="@+id/spinner_update_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"/>
+                <TextView
+                    android:id="@+id/tv_product_code_result_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/secondary_text_color"
+                    android:textSize="14sp"
+                    android:text="Order number (code)" />
 
-    <Button
-        android:id="@+id/btn_update_in_sheet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#8EFFAD"
-        android:gravity="center"
-        android:text="Update stage"
-        android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_product_code_result"
+                    android:textColor="#000"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Not loaded (code)"/>
+
+
+
+                <TextView
+                    android:id="@+id/tv_product_current_stage_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/secondary_text_color"
+                    android:textSize="14sp"
+                    android:text="Current stage" />
+
+                <TextView
+                    android:id="@+id/tv_product_current_stage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Not loaded (stage)"/>
+
+
+
+                <TextView
+                    android:id="@+id/tv_product_current_name_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/secondary_text_color"
+                    android:textSize="14sp"
+                    android:text="Name" />
+
+                <TextView
+                    android:id="@+id/tv_product_current_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Not loaded (name)"/>
+
+                <Spinner
+                    android:id="@+id/spinner_update_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown"/>
+
+                <Button
+                    android:id="@+id/btn_update_in_sheet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#8EFFAD"
+                    android:gravity="center"
+                    android:text="Update stage"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
 
 
 </LinearLayout>
