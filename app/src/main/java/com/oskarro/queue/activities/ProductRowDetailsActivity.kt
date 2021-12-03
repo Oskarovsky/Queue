@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_product_row_details.*
 import org.json.JSONObject
 import android.R.string.no
 import android.widget.*
+import com.oskarro.queue.utils.SheetValues
 
 
 class ProductRowDetailsActivity : BaseActivity() {
@@ -59,7 +60,7 @@ class ProductRowDetailsActivity : BaseActivity() {
                 Method.POST,
                 url,
                 Response.Listener {
-                    val intent = Intent(this@ProductRowDetailsActivity, GoogleReadActivity::class.java)
+                    val intent = Intent(this@ProductRowDetailsActivity, ProductRowDetailsActivity::class.java)
                     hideProgressDialog()
                     startActivity(intent)
                     Toast.makeText(this@ProductRowDetailsActivity, "Product stage has been updated", Toast.LENGTH_SHORT).show()
@@ -103,14 +104,14 @@ class ProductRowDetailsActivity : BaseActivity() {
             Response.Listener { response ->
                 val productJson = JSONObject(response)
                 val dto = ProductDto()
-                dto.stage = productJson.getString("productStage")
-                dto.orderNumber = productJson.getString("productCode")
-                dto.name = productJson.getString("productName")
-                dto.invoiceNumber = productJson.getString("productInvoiceNumber")
-                dto.client = productJson.getString("productClient")
-                dto.productType = productJson.getString("productType")
-                dto.quantity = productJson.getString("productQuantity")
-                dto.price = productJson.getString("productPrice")
+                dto.stage = productJson.getString(SheetValues.STAGE)
+                dto.orderNumber = productJson.getString(SheetValues.CODE)
+                dto.name = productJson.getString(SheetValues.NAME)
+                dto.invoiceNumber = productJson.getString(SheetValues.INVOICE_NUMBER)
+                dto.client = productJson.getString(SheetValues.CLIENT)
+                dto.productType = productJson.getString(SheetValues.TYPE)
+                dto.quantity = productJson.getString(SheetValues.QUANTITY)
+                dto.price = productJson.getString(SheetValues.PRICE)
                 populateProductToUI(dto)
                 hideProgressDialog()
             },
