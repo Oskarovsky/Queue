@@ -32,7 +32,7 @@ class GoogleUpdateStageActivity : BaseActivity() {
 
         val spinnerStatus: Spinner = findViewById(R.id.spinner_status)
         val availableStages = Stage.values().map { it.toString() }
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, availableStages)
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, availableStages)
         spinnerStatus.adapter = arrayAdapter
 
         spinnerStatus.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {

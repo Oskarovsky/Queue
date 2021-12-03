@@ -46,7 +46,7 @@ class ProductRowDetailsActivity : BaseActivity() {
 
         val spinnerProductStage: Spinner = findViewById(R.id.spinner_product_status)
         val availableStages = Stage.values().map { it.toString() }
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, availableStages)
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, availableStages)
         spinnerProductStage.adapter = arrayAdapter
 
         spinnerProductStage.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
