@@ -45,11 +45,12 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
         if (intent.hasExtra("orderNumber")) {
             mOrderNumber = intent.getStringExtra("orderNumber").toString()
             tvProductCodeResult.text = mOrderNumber
-//            TODO fetchProductRowFromSheet(mOrderNumber)
+            showProgressDialog(resources.getString(R.string.please_wait))
+            fetchProductRowFromSheet(mOrderNumber)
         }
 
         val spinnerStatus: Spinner = findViewById(R.id.spinner_update_status)
-        val paths = arrayOf("NEW", "IN-PROGRESS", "DONE")
+        val paths = arrayOf("NEW", "BACKLOG", "IN-PROGRESS", "WAITING", "DONE")
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, paths)
         spinnerStatus.adapter = arrayAdapter
 
@@ -113,7 +114,7 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
                 dto.orderNumber = productJson.getString("productCode")
                 dto.name = productJson.getString("productName")
                 hideProgressDialog()
-//                populateProductToUI(dto)
+                populateProductToUI(dto)
             },
             Response.ErrorListener {
                 Toast.makeText(this@GoogleUpdateStageByCodeActivity, "Error has occurred!", Toast.LENGTH_SHORT).show()
