@@ -16,6 +16,7 @@ object SheetValues {
     const val TYPE: String = "productType"
     const val FLAVOR: String = "productType"
     const val IMAGE_URL: String = "productImageUrl"
+    const val STATUS: String = "productStatus"
 
     /* JSON PARAMS */
     const val SINGLE_REQUEST: String = "SINGLE"

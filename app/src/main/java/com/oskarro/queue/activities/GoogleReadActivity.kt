@@ -52,15 +52,18 @@ class GoogleReadActivity : BaseActivity() {
                 val productJson = jsonObj.getJSONArray(SheetValues.PRODUCTS)
                 for (i in 0..productJson.length() - 1) {
                     val dto = ProductDto()
+                    Log.d("TEST", productJson.getJSONObject(i).toString())
                     dto.stage = Stage.fromString(productJson.getJSONObject(i).getString(SheetValues.STAGE))
                     dto.invoiceNumber = productJson.getJSONObject(i).getString(SheetValues.INVOICE_NUMBER)
                     dto.orderNumber = productJson.getJSONObject(i).getString(SheetValues.CODE)
                     dto.name = productJson.getJSONObject(i).getString(SheetValues.NAME)
+                    dto.status = productJson.getJSONObject(i).getString(SheetValues.STATUS)
                     arrayProducts.add(dto)
                 }
                 populateProductsListToUI(
                     arrayProducts
                         .filter { it.stage != Stage.KONIEC }
+                        .filter { it.status == Constants.INITIALIZED }
                         .sortedBy { it.stage.ordinal })
                 hideProgressDialog()
             },

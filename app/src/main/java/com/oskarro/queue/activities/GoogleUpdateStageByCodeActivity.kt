@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.android.volley.Response
@@ -61,7 +62,7 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
         fetchProductRowFromSheet("1111")
 
         val spinnerStatus: Spinner = findViewById(R.id.spinner_update_status)
-        val availableStages = Stage.values().map { it.name }
+        val availableStages = Stage.values().map { it.value }
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, availableStages)
         spinnerStatus.adapter = arrayAdapter
 

@@ -1,6 +1,6 @@
 package com.oskarro.queue.model
 
-enum class Stage(name: String, order: Int, var color: String = "#000000") {
+enum class Stage(var value: String, var order: Int, var color: String = "#000000") {
     WYDANIE("SUROWCE DO WYDANIA", 0, "#E4E7FFCC"),
     NAWAZENIE("DO NAWAZENIA", 1, "#E4DBFFB2"),
     MIESZANIE("DO MIESZANIA", 2, "#E4C9FF8C"),

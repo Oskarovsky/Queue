@@ -3,6 +3,7 @@ package com.oskarro.queue.activities
 import android.content.Intent
 import android.os.Bundle
 import android.text.util.Linkify
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.android.volley.RequestQueue
@@ -39,7 +40,7 @@ class ProductRowDetailsActivity : BaseActivity() {
         btnUpdateStageInSheet = findViewById(R.id.btn_update_product_row_status)
 
         val spinnerProductStage: Spinner = findViewById(R.id.spinner_product_status)
-        val availableStages = Stage.values().map { it.toString() }
+        val availableStages = Stage.values().map { it.value }
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, availableStages)
         spinnerProductStage.adapter = arrayAdapter
 
@@ -109,6 +110,7 @@ class ProductRowDetailsActivity : BaseActivity() {
                 dto.quantity = productJson.getString(SheetValues.QUANTITY)
                 dto.price = productJson.getString(SheetValues.PRICE)
                 dto.imageUlr = productJson.getString(SheetValues.IMAGE_URL)
+                Log.d("TEST", dto.toString())
                 populateProductToUI(dto)
                 hideProgressDialog()
             },
@@ -123,7 +125,7 @@ class ProductRowDetailsActivity : BaseActivity() {
     fun populateProductToUI(productDto: ProductDto) {
         tv_row_product_dto_name.text = productDto.name
         tv_row_product_dto_code.text = productDto.orderNumber
-        tv_row_product_dto_stage.text = productDto.stage.name
+        tv_row_product_dto_stage.text = productDto.stage.value
         tv_row_product_dto_invoice.text = productDto.invoiceNumber
         tv_row_product_dto_image.text = productDto.imageUlr
         Linkify.addLinks(tv_row_product_dto_image, Linkify.WEB_URLS)

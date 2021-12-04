@@ -50,6 +50,47 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
+                <!-- region Product Name -->
+                <TextView
+                    android:id="@+id/tv_product_current_name_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/secondary_text_color"
+                    android:textSize="14sp"
+                    android:text="Name" />
+
+                <TextView
+                    android:id="@+id/tv_product_current_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Not loaded (name)"/>
+                <!-- endregion -->
+
+                <!-- region Invoice number -->
+                <TextView
+                    android:id="@+id/tv_product_invoice_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/secondary_text_color"
+                    android:textSize="14sp"
+                    android:text="Invoice number" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_product_invoice"
+                    android:textColor="#000"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Not loaded (invoice)"/>
+                <!-- endregion -->
 
                 <!-- region Order number -->
                 <TextView
@@ -72,27 +113,7 @@
                     android:text="Not loaded (code)"/>
                 <!-- endregion -->
 
-
-                <TextView
-                    android:id="@+id/tv_product_invoice_tab"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/secondary_text_color"
-                    android:textSize="14sp"
-                    android:text="Invoice number" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_product_invoice"
-                    android:textColor="#000"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Not loaded (invoice)"/>
-
-
+                <!-- region Current stage -->
                 <TextView
                     android:id="@+id/tv_product_current_stage_tab"
                     android:layout_width="match_parent"
@@ -111,27 +132,8 @@
                     android:layout_marginTop="5dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Not loaded (stage)"/>
+                <!-- endregion -->
 
-
-
-                <TextView
-                    android:id="@+id/tv_product_current_name_tab"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/secondary_text_color"
-                    android:textSize="14sp"
-                    android:text="Name" />
-
-                <TextView
-                    android:id="@+id/tv_product_current_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Not loaded (name)"/>
 
                 <!-- region Image URL -->
                 <TextView

@@ -21,12 +21,13 @@ object Constants {
     const val PROCESS_LIST: String = "processList"
     const val BOARD_DETAIL: String = "boardDetail"
     const val ID: String = "id"
+    const val INITIALIZED: String = "rozpoczęte"
 
     const val PRODUCT_ORDER_NUMBER: String = "productOrderNumber"
 
     const val PROCESS_LIST_ITEM_POSITION: String = "processListItemPosition"
     const val PRODUCT_LIST_ITEM_POSITION: String = "productListItemPosition"
 
-    const val GOOGLE_SCRIPT: String = "https://script.google.com/macros/s/AKfycbyACGtFzh75isltk4FWgou8NBzX-Qu629kV3Bqh3BoDH6yUlJdDg--TCf8aFq4B4-uA/exec"
+    const val GOOGLE_SCRIPT: String = "https://script.google.com/macros/s/AKfycbwypdKk1GlUoyOKptMJXRRABTXnct9qkwvFHBpVlmNq2qbZLZ6zS1FcB5FPh5VxNYP1/exec"
 
 }
