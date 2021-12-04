@@ -48,9 +48,9 @@ class GoogleUpdateStageActivity : BaseActivity() {
                 Method.POST,
                 url,
                 Response.Listener {
-                    val intent = Intent(this@GoogleUpdateStageActivity, GoogleReadActivity::class.java)
+                    finish();
+                    startActivity(intent);
                     hideProgressDialog()
-                    startActivity(intent)
                     Toast.makeText(this@GoogleUpdateStageActivity, "Product stage updated", Toast.LENGTH_SHORT).show()
                 },
                 Response.ErrorListener {

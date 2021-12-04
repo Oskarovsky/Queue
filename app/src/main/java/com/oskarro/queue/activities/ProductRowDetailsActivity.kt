@@ -61,9 +61,9 @@ class ProductRowDetailsActivity : BaseActivity() {
                 Method.POST,
                 url,
                 Response.Listener {
-                    val intent = Intent(this@ProductRowDetailsActivity, ProductRowDetailsActivity::class.java)
+                    finish();
+                    startActivity(intent);
                     hideProgressDialog()
-                    startActivity(intent)
                     Toast.makeText(this@ProductRowDetailsActivity, "Product stage has been updated", Toast.LENGTH_SHORT).show()
                 },
                 Response.ErrorListener {

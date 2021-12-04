@@ -50,8 +50,6 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
             showProgressDialog(resources.getString(R.string.please_wait))
             fetchProductRowFromSheet(mOrderNumber)
         }
-//        showProgressDialog(resources.getString(R.string.please_wait))
-//        fetchProductRowFromSheet("A000608")
 
         val spinnerStatus: Spinner = findViewById(R.id.spinner_update_status)
         val availableStages = Stage.values().map { it.toString() }
