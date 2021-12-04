@@ -97,6 +97,7 @@ class GoogleReadActivity : BaseActivity() {
                 override fun onClick(position: Int, model: ProductDto) {
                     val intent = Intent(this@GoogleReadActivity, ProductRowDetailsActivity::class.java)
                     intent.putExtra(Constants.PRODUCT_ORDER_NUMBER, model.orderNumber)
+                    intent.putExtra(Constants.PRODUCT_INVOICE_NUMBER, model.invoiceNumber)
                     startActivity(intent)
                 }
             })

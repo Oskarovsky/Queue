@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/secondary_text_color"
                     android:textSize="14sp"
-                    android:text="Order number (code)" />
+                    android:text="Index number" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -114,7 +114,7 @@
                     android:gravity="center"
                     android:layout_marginTop="5dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Not loaded (code)"/>
+                    android:text="Not loaded (index)"/>
                 <!-- endregion -->
 
                 <!-- region Current stage -->
@@ -157,7 +157,7 @@
                     android:autoLink="web"
                     android:layout_marginTop="5dp"
                     android:padding="10dp"
-                    android:text="Image URL" />
+                    android:text="Not loaded (image url)" />
                 <!-- endregion -->
 
                 <Spinner

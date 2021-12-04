@@ -14,7 +14,7 @@ enum class Stage(var value: String, var order: Int, var color: String = "#000000
     ERROR("ERROR", 10, "#E4FF9230");
 
     companion object {
-        private val map = Stage.values().associateBy(Stage::name)
-        fun fromString(name: String) = map[name] ?: ERROR
+        private val map = values().associateBy(Stage::value)
+        fun fromString(value: String) = map[value] ?: ERROR
     }
 }

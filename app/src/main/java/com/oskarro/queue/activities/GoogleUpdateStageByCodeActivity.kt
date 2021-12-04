@@ -1,11 +1,9 @@
 package com.oskarro.queue.activities
 
+import android.app.Dialog
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
-import android.util.Log
 import android.view.View
 import android.widget.*
 import com.android.volley.Response
@@ -32,6 +30,7 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
     lateinit var tvProductImageUrl: TextView
 
     private lateinit var mOrderNumber: String
+    private lateinit var mProgressDialog: Dialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,12 +51,14 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
             startActivity(Intent(this@GoogleUpdateStageByCodeActivity, BarcodeScannerActivity::class.java))
         }
 
-        if (intent.hasExtra("orderNumber")) {
-            mOrderNumber = intent.getStringExtra("orderNumber").toString()
+        if (intent.hasExtra(Constants.ORDER_NUMBER)) {
+            mOrderNumber = intent.getStringExtra(Constants.ORDER_NUMBER).toString()
             tvProductCodeResult.text = mOrderNumber
             showProgressDialog(resources.getString(R.string.please_wait))
-            fetchProductRowFromSheet(mOrderNumber)
+//            fetchProductRowFromSheet(mOrderNumber)
         }
+        showProgressDialog(resources.getString(R.string.please_wait))
+        fetchProductRowFromSheetByCode("FPF/6/MWG/11/2021XD0000")
 
         val spinnerStatus: Spinner = findViewById(R.id.spinner_update_status)
         val availableStages = Stage.values().map { it.value }
@@ -109,8 +110,8 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
     }
 
 
-    private fun fetchProductRowFromSheet(orderNumber: String) {
-        val uri = Constants.GOOGLE_SCRIPT + "?requestMethod=SINGLE&productCode=$orderNumber"
+    private fun fetchProductRowFromSheetByCode(code: String) {
+        val uri = Constants.GOOGLE_SCRIPT + "?requestMethod=BARCODE&productCode=$code"
         val stringRequest = object: StringRequest(
             Method.GET,
             uri,

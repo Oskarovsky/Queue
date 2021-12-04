@@ -26,6 +26,7 @@ class ProductRowDetailsActivity : BaseActivity() {
     lateinit var btnUpdateStageInSheet: Button
 
     private var mProductOrderNumber: String = ""
+    private var mProductInvoiceNumber: String = ""
 
     private var requestQueue: RequestQueue? = null
 
@@ -68,7 +69,8 @@ class ProductRowDetailsActivity : BaseActivity() {
                 override fun getParams(): MutableMap<String, String> {
                     val params = HashMap<String, String>()
                     params["productStatus"] = spinnerProductStage.selectedItem.toString()
-                    params["productCode"] = mProductOrderNumber
+                    params["productOrderNumber"] = mProductOrderNumber
+                    params["productInvoiceNumber"] = mProductInvoiceNumber
                     return params
                 }
             }
@@ -77,7 +79,7 @@ class ProductRowDetailsActivity : BaseActivity() {
 
         getIntentData()
         showProgressDialog(resources.getString(R.string.please_wait))
-        fetchProductRowFromSheet(mProductOrderNumber)
+        fetchProductRowFromSheet(mProductOrderNumber, mProductInvoiceNumber)
     }
 
     private fun setupActionBar() {
@@ -93,8 +95,8 @@ class ProductRowDetailsActivity : BaseActivity() {
         }
     }
 
-    private fun fetchProductRowFromSheet(orderNumber: String) {
-        val uri = Constants.GOOGLE_SCRIPT + "?requestMethod=SINGLE&productCode=$orderNumber"
+    private fun fetchProductRowFromSheet(orderNumber: String, invoiceNumber: String) {
+        val uri = Constants.GOOGLE_SCRIPT + "?requestMethod=SINGLE&productOrderNumber=$orderNumber&productInvoiceNumber=$invoiceNumber"
         val stringRequest = object: StringRequest(
             Method.GET,
             uri,
@@ -134,6 +136,7 @@ class ProductRowDetailsActivity : BaseActivity() {
     private fun getIntentData() {
         if (intent.hasExtra(Constants.PRODUCT_ORDER_NUMBER)) {
             mProductOrderNumber = intent.getStringExtra(Constants.PRODUCT_ORDER_NUMBER)!!
+            mProductInvoiceNumber = intent.getStringExtra(Constants.PRODUCT_INVOICE_NUMBER)!!
         }
     }
 }

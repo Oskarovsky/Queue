@@ -93,7 +93,7 @@
                     android:textColor="@color/secondary_text_color"
                     android:layout_marginTop="10dp"
                     android:textSize="14sp"
-                    android:text="Code" />
+                    android:text="Index" />
 
                 <TextView
                     android:id="@+id/tv_row_product_dto_code"
@@ -102,7 +102,7 @@
                     android:textColor="@color/primary_text_color"
                     android:layout_marginTop="2dp"
                     android:padding="10dp"
-                    android:text="Code" />
+                    android:text="Not loaded (index)" />
                 <!-- endregion -->
 
                 <!-- region Product Stage -->
@@ -122,7 +122,7 @@
                     android:textColor="@color/primary_text_color"
                     android:layout_marginTop="2dp"
                     android:padding="10dp"
-                    android:text="Stage" />
+                    android:text="Not loaded (stage)" />
                 <!-- endregion -->
 
                 <!-- region Image URL -->
@@ -143,7 +143,7 @@
                     android:autoLink="web"
                     android:layout_marginTop="2dp"
                     android:padding="10dp"
-                    android:text="Image URL" />
+                    android:text="Not loaded (image url)" />
                 <!-- endregion -->
 
                 <!-- region Stage spinner -->

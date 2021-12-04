@@ -15,6 +15,7 @@ object Constants {
     const val DOCUMENT_ID: String = "documentId"
     const val STAGE: String = "stage"
     const val ORDER_NUMBER: String = "orderNumber"
+    const val INVOICE_NUMBER: String = "invoiceNumber"
     const val AMOUNT: String = "amount"
     const val DESCRIPTION: String = "description"
     const val TITLE: String = "title"
@@ -24,10 +25,11 @@ object Constants {
     const val INITIALIZED: String = "rozpoczęte"
 
     const val PRODUCT_ORDER_NUMBER: String = "productOrderNumber"
+    const val PRODUCT_INVOICE_NUMBER: String = "productInvoiceNumber"
 
     const val PROCESS_LIST_ITEM_POSITION: String = "processListItemPosition"
     const val PRODUCT_LIST_ITEM_POSITION: String = "productListItemPosition"
 
-    const val GOOGLE_SCRIPT: String = "https://script.google.com/macros/s/AKfycbxi2sm6uBLndNkLzukOP74JFSZ03gXv6hCQNUr6ztnH8Rx4ce0cmL2A5WndvD8g8igg/exec"
+    const val GOOGLE_SCRIPT: String = "https://script.google.com/macros/s/AKfycbwx1C0jVgL5CekaJ5ndMzjGtmgF0gI67ax27Rp2mzpLf2UjTYENLz1X0zCV-CnpwYk/exec"
 
 }
