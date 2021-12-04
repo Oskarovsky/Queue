@@ -57,7 +57,10 @@ class GoogleReadActivity : BaseActivity() {
                     dto.name = productJson.getJSONObject(i).getString(SheetValues.NAME)
                     arrayProducts.add(dto)
                 }
-                populateProductsListToUI(arrayProducts.sortedBy { it.stage.ordinal })
+                populateProductsListToUI(
+                    arrayProducts
+                        .filter { it.stage != Stage.KONIEC }
+                        .sortedBy { it.stage.ordinal })
                 hideProgressDialog()
             },
             Response.ErrorListener {

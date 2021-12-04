@@ -1,6 +1,7 @@
 package com.oskarro.queue.adapters
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ class ProductRowsAdapter(private val context: Context,
         val model = list[position]
 
         if (holder is MyViewHolder) {
+            holder.itemView.setBackgroundColor((Color.parseColor(model.stage.color)))
             holder.itemView.tv_row_product_code.text = model.orderNumber
             holder.itemView.tv_row_product_name.text = model.name
             holder.itemView.tv_row_product_stage.text = model.stage.name
