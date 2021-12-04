@@ -14,6 +14,7 @@ import com.oskarro.queue.R
 import com.oskarro.queue.adapters.ProductRowsAdapter
 import com.oskarro.queue.model.Board
 import com.oskarro.queue.model.ProductDto
+import com.oskarro.queue.model.Stage
 import com.oskarro.queue.utils.Constants
 import com.oskarro.queue.utils.SheetValues
 import com.oskarro.queue.utils.SheetValues.MULTI_REQUEST
@@ -51,12 +52,12 @@ class GoogleReadActivity : BaseActivity() {
                 val productJson = jsonObj.getJSONArray(SheetValues.PRODUCTS)
                 for (i in 0..productJson.length() - 1) {
                     val dto = ProductDto()
-                    dto.stage = productJson.getJSONObject(i).getString(SheetValues.STAGE)
+                    dto.stage = Stage.valueOf(productJson.getJSONObject(i).getString(SheetValues.STAGE))
                     dto.orderNumber = productJson.getJSONObject(i).getString(SheetValues.CODE)
                     dto.name = productJson.getJSONObject(i).getString(SheetValues.NAME)
                     arrayProducts.add(dto)
                 }
-                populateProductsListToUI(arrayProducts)
+                populateProductsListToUI(arrayProducts.sortedBy { it.stage.ordinal })
                 hideProgressDialog()
             },
             Response.ErrorListener {
@@ -74,7 +75,7 @@ class GoogleReadActivity : BaseActivity() {
     }
 
 
-    fun populateProductsListToUI(productsList: ArrayList<ProductDto>) {
+    fun populateProductsListToUI(productsList: List<ProductDto>) {
         if (productsList.size > 0) {
             rv_row_products_list.visibility = View.VISIBLE
             tv_no_row_products.visibility = View.GONE

@@ -23,7 +23,7 @@ class ProductDtoAdapter(private val context: Context,
         if (holder is MyViewHolder) {
             holder.itemView.tv_row_product_dto_code.text = product.orderNumber
             holder.itemView.tv_row_product_dto_name.text = product.name
-            holder.itemView.tv_row_product_dto_stage.text = product.stage
+            holder.itemView.tv_row_product_dto_stage.text = product.stage.name
 
             holder.itemView.setOnClickListener {
                 if (onClickListener != null) {

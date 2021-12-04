@@ -10,7 +10,7 @@ import com.oskarro.queue.model.ProductDto
 import kotlinx.android.synthetic.main.item_row_product.view.*
 
 class ProductRowsAdapter(private val context: Context,
-                         private val list: ArrayList<ProductDto>)
+                         private val list: List<ProductDto>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var onClickListener: OnClickListener? = null
@@ -25,7 +25,7 @@ class ProductRowsAdapter(private val context: Context,
         if (holder is MyViewHolder) {
             holder.itemView.tv_row_product_code.text = model.orderNumber
             holder.itemView.tv_row_product_name.text = model.name
-            holder.itemView.tv_row_product_stage.text = model.stage
+            holder.itemView.tv_row_product_stage.text = model.stage.name
 
             holder.itemView.setOnClickListener {
                 if (onClickListener != null) {

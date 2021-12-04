@@ -109,7 +109,7 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
             Response.Listener { response ->
                 val productJson = JSONObject(response)
                 val dto = ProductDto()
-                dto.stage = productJson.getString(SheetValues.STAGE)
+                dto.stage = Stage.valueOf(productJson.getString(SheetValues.STAGE))
                 dto.orderNumber = productJson.getString(SheetValues.CODE)
                 dto.name = productJson.getString(SheetValues.NAME)
                 hideProgressDialog()
@@ -125,7 +125,7 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
     }
 
     fun populateProductToUI(productDto: ProductDto) {
-        tvProductCurrentStage.text = productDto.stage
+        tvProductCurrentStage.text = productDto.stage.name
         tvProductCodeResult.text = productDto.orderNumber
         tvProductName.text = productDto.name
     }

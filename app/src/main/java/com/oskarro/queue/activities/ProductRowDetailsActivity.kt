@@ -106,7 +106,7 @@ class ProductRowDetailsActivity : BaseActivity() {
             Response.Listener { response ->
                 val productJson = JSONObject(response)
                 val dto = ProductDto()
-                dto.stage = productJson.getString(SheetValues.STAGE)
+                dto.stage = Stage.valueOf(productJson.getString(SheetValues.STAGE))
                 dto.orderNumber = productJson.getString(SheetValues.CODE)
                 dto.name = productJson.getString(SheetValues.NAME)
                 dto.invoiceNumber = productJson.getString(SheetValues.INVOICE_NUMBER)
@@ -128,7 +128,7 @@ class ProductRowDetailsActivity : BaseActivity() {
     fun populateProductToUI(productDto: ProductDto) {
         tv_row_product_dto_name.text = productDto.name
         tv_row_product_dto_code.text = productDto.orderNumber
-        tv_row_product_dto_stage.text = productDto.stage
+        tv_row_product_dto_stage.text = productDto.stage.name
 
     }
 
