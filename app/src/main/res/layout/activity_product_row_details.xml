@@ -61,6 +61,26 @@
                     android:text="Product Name" />
                 <!-- endregion -->
 
+                <!-- region Product Invoice -->
+                <TextView
+                    android:id="@+id/tv_row_product_dto_invoice_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/secondary_text_color"
+                    android:layout_marginTop="15dp"
+                    android:textSize="14sp"
+                    android:text="Invoice number" />
+
+                <TextView
+                    android:id="@+id/tv_row_product_dto_invoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary_text_color"
+                    android:layout_marginTop="5dp"
+                    android:padding="10dp"
+                    android:text="Not loaded (invoice)" />
+                <!-- endregion -->
+
                 <!-- region Product Code -->
                 <TextView
                     android:id="@+id/tv_row_product_dto_code_tab"
@@ -99,6 +119,27 @@
                     android:layout_marginTop="5dp"
                     android:padding="10dp"
                     android:text="Stage" />
+                <!-- endregion -->
+
+                <!-- region Image URL -->
+                <TextView
+                    android:id="@+id/tv_row_product_dto_image_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/secondary_text_color"
+                    android:layout_marginTop="15dp"
+                    android:textSize="14sp"
+                    android:text="Image URL" />
+
+                <TextView
+                    android:id="@+id/tv_row_product_dto_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary_text_color"
+                    android:autoLink="web"
+                    android:layout_marginTop="5dp"
+                    android:padding="10dp"
+                    android:text="Image URL" />
                 <!-- endregion -->
 
                 <!-- region Stage spinner -->
@@ -141,52 +182,4 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
-<!--
-
-    <TextView
-        android:id="@+id/tv_row_product_dto_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/primary_text_color"
-        android:layout_below="@+id/app_bar_layout"
-        android:textSize="18sp"
-        android:text="Product Name" />
-
-    <TextView
-        android:id="@+id/tv_row_product_dto_code"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/secondary_text_color"
-        android:layout_below="@id/tv_row_product_dto_name"
-        android:textSize="14sp"
-        android:text="Code" />
-
-    <TextView
-        android:id="@+id/tv_row_product_dto_stage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/secondary_text_color"
-        android:layout_below="@+id/tv_row_product_dto_code"
-        android:textSize="14sp"
-        android:text="Stage" />
-
-
-    <Spinner
-        android:id="@+id/spinner_product_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_row_product_dto_stage"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"/>
-
-    <Button
-        android:id="@+id/btn_update_product_row_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/spinner_product_status"
-        android:background="#8EFFAD"
-        android:text="Update status in sheet"
-        android:textColor="@color/black"/>
-
-    -->
 </LinearLayout>

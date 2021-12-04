@@ -1,29 +1,23 @@
 package com.oskarro.queue.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.text.util.Linkify
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.*
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.oskarro.queue.R
-import com.oskarro.queue.adapters.ProductDtoAdapter
-import com.oskarro.queue.adapters.ProductRowsAdapter
-import com.oskarro.queue.model.Board
 import com.oskarro.queue.model.ProductDto
+import com.oskarro.queue.model.Stage
 import com.oskarro.queue.utils.Constants
+import com.oskarro.queue.utils.SheetValues
 import kotlinx.android.synthetic.main.activity_google_read.*
 import kotlinx.android.synthetic.main.activity_product_details.*
 import kotlinx.android.synthetic.main.activity_product_row_details.*
 import org.json.JSONObject
-import android.R.string.no
-import android.widget.*
-import com.oskarro.queue.model.Stage
-import com.oskarro.queue.utils.SheetValues
 
 
 class ProductRowDetailsActivity : BaseActivity() {
@@ -106,7 +100,7 @@ class ProductRowDetailsActivity : BaseActivity() {
             Response.Listener { response ->
                 val productJson = JSONObject(response)
                 val dto = ProductDto()
-                dto.stage = Stage.valueOf(productJson.getString(SheetValues.STAGE))
+                dto.stage = Stage.fromString(productJson.getString(SheetValues.STAGE))
                 dto.orderNumber = productJson.getString(SheetValues.CODE)
                 dto.name = productJson.getString(SheetValues.NAME)
                 dto.invoiceNumber = productJson.getString(SheetValues.INVOICE_NUMBER)
@@ -114,6 +108,7 @@ class ProductRowDetailsActivity : BaseActivity() {
                 dto.productType = productJson.getString(SheetValues.TYPE)
                 dto.quantity = productJson.getString(SheetValues.QUANTITY)
                 dto.price = productJson.getString(SheetValues.PRICE)
+                dto.imageUlr = productJson.getString(SheetValues.IMAGE_URL)
                 populateProductToUI(dto)
                 hideProgressDialog()
             },
@@ -129,7 +124,9 @@ class ProductRowDetailsActivity : BaseActivity() {
         tv_row_product_dto_name.text = productDto.name
         tv_row_product_dto_code.text = productDto.orderNumber
         tv_row_product_dto_stage.text = productDto.stage.name
-
+        tv_row_product_dto_invoice.text = productDto.invoiceNumber
+        tv_row_product_dto_image.text = productDto.imageUlr
+        Linkify.addLinks(tv_row_product_dto_image, Linkify.WEB_URLS)
     }
 
     private fun getIntentData() {

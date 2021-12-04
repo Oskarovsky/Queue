@@ -52,7 +52,8 @@ class GoogleReadActivity : BaseActivity() {
                 val productJson = jsonObj.getJSONArray(SheetValues.PRODUCTS)
                 for (i in 0..productJson.length() - 1) {
                     val dto = ProductDto()
-                    dto.stage = Stage.valueOf(productJson.getJSONObject(i).getString(SheetValues.STAGE))
+                    dto.stage = Stage.fromString(productJson.getJSONObject(i).getString(SheetValues.STAGE))
+                    dto.invoiceNumber = productJson.getJSONObject(i).getString(SheetValues.INVOICE_NUMBER)
                     dto.orderNumber = productJson.getJSONObject(i).getString(SheetValues.CODE)
                     dto.name = productJson.getJSONObject(i).getString(SheetValues.NAME)
                     arrayProducts.add(dto)

@@ -26,6 +26,7 @@ class ProductRowsAdapter(private val context: Context,
         if (holder is MyViewHolder) {
             holder.itemView.setBackgroundColor((Color.parseColor(model.stage.color)))
             holder.itemView.tv_row_product_code.text = model.orderNumber
+            holder.itemView.tv_row_product_invoice.text = model.invoiceNumber
             holder.itemView.tv_row_product_name.text = model.name
             holder.itemView.tv_row_product_stage.text = model.stage.name
 

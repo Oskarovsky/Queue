@@ -29,6 +29,14 @@
                 android:text="Product Name" />
 
             <TextView
+                android:id="@+id/tv_row_product_invoice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/secondary_text_color"
+                android:textSize="14sp"
+                android:text="Code" />
+
+            <TextView
                 android:id="@+id/tv_row_product_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

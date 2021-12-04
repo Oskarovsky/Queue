@@ -1,7 +1,10 @@
 package com.oskarro.queue.activities
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
 import android.view.View
 import android.widget.*
 import com.android.volley.Response
@@ -24,6 +27,8 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
     lateinit var tvProductCodeResult: TextView
     lateinit var tvProductCurrentStage: TextView
     lateinit var tvProductName: TextView
+    lateinit var tvProductInvoice: TextView
+    lateinit var tvProductImageUrl: TextView
 
     private lateinit var mOrderNumber: String
 
@@ -39,6 +44,8 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
         tvProductCodeResult = findViewById(R.id.tv_product_code_result)
         tvProductCurrentStage = findViewById(R.id.tv_product_current_stage)
         tvProductName = findViewById(R.id.tv_product_current_name)
+        tvProductInvoice = findViewById(R.id.tv_product_invoice)
+        tvProductImageUrl = findViewById(R.id.tv_product_image)
 
         btnScanCode.setOnClickListener {
             startActivity(Intent(this@GoogleUpdateStageByCodeActivity, BarcodeScannerActivity::class.java))
@@ -50,9 +57,11 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
             showProgressDialog(resources.getString(R.string.please_wait))
             fetchProductRowFromSheet(mOrderNumber)
         }
+        showProgressDialog(resources.getString(R.string.please_wait))
+        fetchProductRowFromSheet("1111")
 
         val spinnerStatus: Spinner = findViewById(R.id.spinner_update_status)
-        val availableStages = Stage.values().map { it.toString() }
+        val availableStages = Stage.values().map { it.name }
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, availableStages)
         spinnerStatus.adapter = arrayAdapter
 
@@ -109,9 +118,11 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
             Response.Listener { response ->
                 val productJson = JSONObject(response)
                 val dto = ProductDto()
-                dto.stage = Stage.valueOf(productJson.getString(SheetValues.STAGE))
+                dto.stage = Stage.fromString(productJson.getString(SheetValues.STAGE))
+                dto.invoiceNumber = productJson.getString(SheetValues.INVOICE_NUMBER)
                 dto.orderNumber = productJson.getString(SheetValues.CODE)
                 dto.name = productJson.getString(SheetValues.NAME)
+                dto.imageUlr = productJson.getString(SheetValues.IMAGE_URL)
                 hideProgressDialog()
                 populateProductToUI(dto)
             },
@@ -127,6 +138,9 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
     fun populateProductToUI(productDto: ProductDto) {
         tvProductCurrentStage.text = productDto.stage.name
         tvProductCodeResult.text = productDto.orderNumber
+        tvProductInvoice.text = productDto.invoiceNumber
         tvProductName.text = productDto.name
+        tvProductImageUrl.text = productDto.imageUlr
+        Linkify.addLinks(tvProductImageUrl, Linkify.WEB_URLS)
     }
 }
