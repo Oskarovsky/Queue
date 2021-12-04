@@ -15,8 +15,8 @@ import kotlinx.android.synthetic.main.activity_google_update_stage.*
 
 class GoogleUpdateStageActivity : BaseActivity() {
 
-    lateinit var editProductStatus: EditText
-    lateinit var editProductName: EditText
+    lateinit var editProductInvoiceNumber: EditText
+    lateinit var editProductOrderNumber: EditText
     lateinit var btnSaveToGoogle: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +25,8 @@ class GoogleUpdateStageActivity : BaseActivity() {
 
         setupActionBar()
 
-        editProductStatus = findViewById(R.id.edit_product_status)
-        editProductName = findViewById(R.id.edit_product_name)
+        editProductInvoiceNumber = findViewById(R.id.edit_product_invoice_number)
+        editProductOrderNumber = findViewById(R.id.edit_product_order_number)
         btnSaveToGoogle = findViewById(R.id.btn_save_to_google)
 
 
@@ -59,7 +59,8 @@ class GoogleUpdateStageActivity : BaseActivity() {
             ) {
                 override fun getParams(): MutableMap<String, String> {
                     val params = HashMap<String, String>()
-                    params["productCode"] = editProductName.text.toString()
+                    params["productOrderNumber"] = editProductOrderNumber.text.toString()
+                    params["productInvoiceNumber"] = editProductInvoiceNumber.text.toString()
                     params["productStatus"] = spinnerStatus.selectedItem.toString()
                     return params
                 }

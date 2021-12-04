@@ -7,6 +7,7 @@
     tools:context=".activities.GoogleUpdateStageActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_upload_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.Queue.AppBarOverlay">
@@ -20,11 +21,12 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <EditText
-        android:id="@+id/edit_product_status"
+        android:id="@+id/edit_product_invoice_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter product status"
+        android:hint="Enter invoice number"
         android:textSize="18sp"
+        android:layout_below="@+id/app_bar_upload_bar"
         android:inputType="text"
         android:layout_margin="10dp"
         android:textColor="@color/black"
@@ -32,15 +34,15 @@
         android:maxLines="1"/>
 
     <EditText
-        android:id="@+id/edit_product_name"
+        android:id="@+id/edit_product_order_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter product name"
+        android:hint="Enter product order number"
         android:textSize="18sp"
         android:layout_margin="10dp"
         android:textColor="@color/black"
         android:maxLines="1"
-        android:layout_below="@+id/edit_product_status"
+        android:layout_below="@+id/edit_product_invoice_number"
         android:autofillHints=""
         android:inputType="text" />
 
@@ -52,7 +54,7 @@
         android:textColor="#000"
         android:layout_marginBottom="15dp"
         android:gravity="center"
-        android:layout_below="@id/edit_product_name"
+        android:layout_below="@id/edit_product_order_number"
         android:layout_marginTop="15dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Choose stage"/>
