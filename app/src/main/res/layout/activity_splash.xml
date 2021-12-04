@@ -19,6 +19,15 @@
         android:textStyle="bold"
         android:textSize="@dimen/splash_screen_title_text_size" />
 
+    <TextView
+        android:id="@+id/tv_app_launch_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/app_launch_info"
+        android:textColor="#474747"
+        android:textSize="@dimen/splash_screen_info_text_size" />
+
 
 
 </LinearLayout>

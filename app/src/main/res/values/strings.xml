@@ -2,6 +2,7 @@
     <string name="upload_process">Upload process</string>
     <string name="retrieve_process">Retrieve process</string>
     <string name="app_name">Queue App</string>
+    <string name="app_launch_info">Launching the application…</string>
 
 
     <string name="lets_get_started_text">Lets get started text information</string>

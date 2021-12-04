@@ -2,6 +2,7 @@
     <dimen name="fab_margin">16dp</dimen>
     
     <dimen name="splash_screen_title_text_size">70sp</dimen>
+    <dimen name="splash_screen_info_text_size">20sp</dimen>
 
     <dimen name="intro_screen_title_text_marginTop">40dp</dimen>
     <dimen name="intro_screen_title_text_size">40sp</dimen>
