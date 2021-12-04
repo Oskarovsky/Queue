@@ -42,31 +42,35 @@ class GoogleUpdateStageActivity : BaseActivity() {
 
 
         btnSaveToGoogle.setOnClickListener {
-            showProgressDialog(resources.getString(R.string.please_wait))
-            val url = Constants.GOOGLE_SCRIPT
-            val stringRequest = object: StringRequest(
-                Method.POST,
-                url,
-                Response.Listener {
-                    finish();
-                    startActivity(intent);
-                    hideProgressDialog()
-                    Toast.makeText(this@GoogleUpdateStageActivity, "Product stage updated", Toast.LENGTH_SHORT).show()
-                },
-                Response.ErrorListener {
-                    Toast.makeText(this@GoogleUpdateStageActivity, "Could not update product stage", Toast.LENGTH_SHORT).show()
+            if (editProductOrderNumber.text.toString().trim().isBlank() || editProductInvoiceNumber.text.toString().trim().isBlank()) {
+                Toast.makeText(this@GoogleUpdateStageActivity, "Both fields cannot be empty! ", Toast.LENGTH_SHORT).show()
+            } else {
+                showProgressDialog(resources.getString(R.string.please_wait))
+                val url = Constants.GOOGLE_SCRIPT
+                val stringRequest = object: StringRequest(
+                    Method.POST,
+                    url,
+                    Response.Listener {
+                        finish();
+                        startActivity(intent);
+                        hideProgressDialog()
+                        Toast.makeText(this@GoogleUpdateStageActivity, "Product stage updated", Toast.LENGTH_SHORT).show()
+                    },
+                    Response.ErrorListener {
+                        Toast.makeText(this@GoogleUpdateStageActivity, "Could not update product stage", Toast.LENGTH_SHORT).show()
+                    }
+                ) {
+                    override fun getParams(): MutableMap<String, String> {
+                        val params = HashMap<String, String>()
+                        params["productOrderNumber"] = editProductOrderNumber.text.toString()
+                        params["productInvoiceNumber"] = editProductInvoiceNumber.text.toString()
+                        params["productStatus"] = spinnerStatus.selectedItem.toString()
+                        return params
+                    }
                 }
-            ) {
-                override fun getParams(): MutableMap<String, String> {
-                    val params = HashMap<String, String>()
-                    params["productOrderNumber"] = editProductOrderNumber.text.toString()
-                    params["productInvoiceNumber"] = editProductInvoiceNumber.text.toString()
-                    params["productStatus"] = spinnerStatus.selectedItem.toString()
-                    return params
-                }
+                val queue = Volley.newRequestQueue(this@GoogleUpdateStageActivity)
+                queue.add(stringRequest)
             }
-            val queue = Volley.newRequestQueue(this@GoogleUpdateStageActivity)
-            queue.add(stringRequest)
         }
     }
 

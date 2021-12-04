@@ -20,6 +20,10 @@
             app:popupTheme="@style/Theme.Queue.PopupOverlay" />
     </com.google.android.material.appbar.AppBarLayout>
 
+    <ScrollView android:id="@+id/ScrollView01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -179,6 +183,6 @@
 
     </LinearLayout>
 
-
+    </ScrollView>
 
 </LinearLayout>
