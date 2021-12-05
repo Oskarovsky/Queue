@@ -55,10 +55,10 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
             mOrderNumber = intent.getStringExtra(Constants.ORDER_NUMBER).toString()
             tvProductCodeResult.text = mOrderNumber
             showProgressDialog(resources.getString(R.string.please_wait))
-//            fetchProductRowFromSheet(mOrderNumber)
+            fetchProductRowFromSheetByCode(mOrderNumber)
         }
-        showProgressDialog(resources.getString(R.string.please_wait))
-        fetchProductRowFromSheetByCode("FPF/6/MWG/11/2021XD0000")
+//        showProgressDialog(resources.getString(R.string.please_wait))
+//        fetchProductRowFromSheetByCode("FPF/6/MWG/11/2021XD0000")
 
         val spinnerStatus: Spinner = findViewById(R.id.spinner_update_status)
         val availableStages = Stage.values().map { it.value }
