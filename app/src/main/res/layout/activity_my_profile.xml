@@ -60,7 +60,7 @@
                         android:id="@+id/my_profile_name_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Name"
+                        android:hint="Nazwa"
                         android:inputType="text"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -94,7 +94,7 @@
                         android:id="@+id/my_profile_mobile_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Mobile"
+                        android:hint="Numer telefonu"
                         android:inputType="phone"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -112,7 +112,7 @@
                     android:gravity="center"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
-                    android:text="UPDATE"
+                    android:text="Zapisz zmiany"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 

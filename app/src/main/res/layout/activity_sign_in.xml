@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="@string/sign_in"
+            android:text="ZALOGUJ SIĘ"
             android:textColor="@color/primary_text_color"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -35,7 +35,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:gravity="center"
-            android:text="@string/sign_in_description_text"
+            android:text="Wpisz nazwę użytkownika oraz hasło"
             android:textColor="@color/secondary_text_color"
             android:textSize="16sp"
             android:id="@+id/tv_description_sign_in"/>
@@ -82,7 +82,7 @@
                         android:id="@+id/et_password_sign_in"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/password"
+                        android:hint="Hasło"
                         android:inputType="textPassword"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -100,7 +100,7 @@
                     android:gravity="center"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
-                    android:text="@string/sign_in"
+                    android:text="Zaloguj się"
                     android:textColor="@color/white"
                     android:textSize="18sp"/>
             </LinearLayout>

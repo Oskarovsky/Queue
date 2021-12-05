@@ -20,18 +20,18 @@
 
     <string name="sign_in_description_text">Enter your name and password for login</string>
 
-    <string name="please_wait">Please wait…</string>
+    <string name="please_wait">Proszę czekać…</string>
     <string name="please_click_back_again_to_exit">please click back again to exit</string>
     <string name="no_boards_available">No Boards Available!</string>
-    <string name="welcome_notification">Welcome to the product support application!</string>
+    <string name="welcome_notification">Witaj w aplikacji do zarządzania produktami!</string>
 
-    <string name="nav_my_profile">My profile</string>
-    <string name="nav_sign_out">Sign out</string>
-    <string name="nav_read_data">Product area</string>
+    <string name="nav_my_profile">Pokaż profil</string>
+    <string name="nav_sign_out">Wyloguj się</string>
+    <string name="nav_read_data">Strefa produktów</string>
 
     <string name="mobile">Mobile</string>
     <string name="update">UPDATE</string>
-    <string name="my_profile_title">My Profile</string>
+    <string name="my_profile_title">Pokaż profil</string>
 
     <string name="create_board_title">Create board</string>
     <string name="create">CREATE</string>
@@ -49,10 +49,10 @@
     <string name="due_date">Due date</string>
     <string name="select_due_date">Select due date</string>
 
-    <string name="main_board_title">Queue products</string>
-    <string name="product_list_board_title">All products</string>
-    <string name="product_stage_board_title">Product stage panel</string>
-    <string name="product_details_board_title">Product details</string>
+    <string name="main_board_title">Strefa produktów</string>
+    <string name="product_list_board_title">Wszystkie produkty</string>
+    <string name="product_stage_board_title">Panel produktu</string>
+    <string name="product_details_board_title">Szczegóły produktu</string>
 
 
 </resources>

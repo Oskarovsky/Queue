@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/primary_text_color"
                 android:textSize="18sp"
-                android:text="Product Name" />
+                android:text="Nazwa produktu" />
 
             <TextView
                 android:id="@+id/tv_row_product_invoice"
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/secondary_text_color"
                 android:textSize="14sp"
-                android:text="Code" />
+                android:text="Indeks produktu" />
 
             <TextView
                 android:id="@+id/tv_row_product_code"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/secondary_text_color"
                 android:textSize="14sp"
-                android:text="Code" />
+                android:text="Indeks produktu" />
 
             <TextView
                 android:id="@+id/tv_row_product_stage"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/secondary_text_color"
                 android:textSize="14sp"
-                android:text="Stage" />
+                android:text="Etap" />
         </LinearLayout>
 
     </LinearLayout>

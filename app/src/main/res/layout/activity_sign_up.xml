@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="@string/sign_up"
+            android:text="ZAREJESTRUJ SIE"
             android:textColor="@color/primary_text_color"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -35,7 +35,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:gravity="center"
-            android:text="Enter your name, email and password to register with us."
+            android:text="Wprowadz nazwę użytkownika, email oraz hasło aby się zarejestrować."
             android:textColor="@color/secondary_text_color"
             android:textSize="16sp"
             android:id="@+id/sign_up_description_tv"/>
@@ -65,7 +65,7 @@
                         android:id="@+id/et_name_sign_up"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/name"
+                        android:hint="Nazwa użytkownika"
                         android:inputType="textEmailAddress"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -97,7 +97,7 @@
                         android:id="@+id/et_password_sign_up"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/password"
+                        android:hint="Hasło"
                         android:inputType="textPassword"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -115,7 +115,7 @@
                     android:gravity="center"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
-                    android:text="@string/sign_up"
+                    android:text="ZAREJESTRUJ SIĘ"
                     android:textColor="@color/white"
                     android:textSize="18sp"/>
             </LinearLayout>

@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:id="@+id/btn_scan_code"
-            android:text="Scan Barcode or QR code" />
+            android:text="Skanuj kod kreskowy" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/secondary_text_color"
                     android:textSize="14sp"
-                    android:text="Name" />
+                    android:text="Nazwa produktu" />
 
                 <TextView
                     android:id="@+id/tv_product_current_name"
@@ -72,7 +72,7 @@
                     android:gravity="center"
                     android:layout_marginTop="5dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Not loaded (name)"/>
+                    android:text="Nie pobrane (nazwa)"/>
                 <!-- endregion -->
 
                 <!-- region Invoice number -->
@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/secondary_text_color"
                     android:textSize="14sp"
-                    android:text="Invoice number" />
+                    android:text="Numer faktury" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -93,7 +93,7 @@
                     android:gravity="center"
                     android:layout_marginTop="5dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Not loaded (invoice)"/>
+                    android:text="Nie pobrane (faktura)"/>
                 <!-- endregion -->
 
                 <!-- region Order number -->
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/secondary_text_color"
                     android:textSize="14sp"
-                    android:text="Index number" />
+                    android:text="Numer indeksu" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -114,7 +114,7 @@
                     android:gravity="center"
                     android:layout_marginTop="5dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Not loaded (index)"/>
+                    android:text="Nie pobrane (indeks)"/>
                 <!-- endregion -->
 
                 <!-- region Current stage -->
@@ -124,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/secondary_text_color"
                     android:textSize="14sp"
-                    android:text="Current stage" />
+                    android:text="Aktualny etap" />
 
                 <TextView
                     android:id="@+id/tv_product_current_stage"
@@ -135,7 +135,7 @@
                     android:gravity="center"
                     android:layout_marginTop="5dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Not loaded (stage)"/>
+                    android:text="Nie pobrane (etap)"/>
                 <!-- endregion -->
 
 
@@ -147,7 +147,7 @@
                     android:textColor="@color/secondary_text_color"
                     android:layout_marginTop="15dp"
                     android:textSize="14sp"
-                    android:text="Image URL" />
+                    android:text="Link do zdjęcia" />
 
                 <TextView
                     android:id="@+id/tv_product_image"
@@ -157,7 +157,7 @@
                     android:autoLink="web"
                     android:layout_marginTop="5dp"
                     android:padding="10dp"
-                    android:text="Not loaded (image url)" />
+                    android:text="Nie pobrane (zdjęcie)" />
                 <!-- endregion -->
 
                 <Spinner
@@ -174,7 +174,7 @@
                     android:layout_height="wrap_content"
                     android:background="#8EFFAD"
                     android:gravity="center"
-                    android:text="Update stage"
+                    android:text="Zapisz zmiany"
                     android:textColor="@color/black"/>
 
             </LinearLayout>

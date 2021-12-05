@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/secondary_text_color"
                     android:textSize="14sp"
-                    android:text="Product Name" />
+                    android:text="Nazwa produktu" />
 
                 <TextView
                     android:id="@+id/tv_row_product_dto_name"
@@ -62,7 +62,7 @@
                     android:textColor="@color/primary_text_color"
                     android:layout_marginTop="5dp"
                     android:padding="10dp"
-                    android:text="Product Name" />
+                    android:text="Nie pobrano (nazwa)" />
                 <!-- endregion -->
 
                 <!-- region Product Invoice -->
@@ -73,7 +73,7 @@
                     android:textColor="@color/secondary_text_color"
                     android:layout_marginTop="10dp"
                     android:textSize="14sp"
-                    android:text="Invoice number" />
+                    android:text="Numer faktury" />
 
                 <TextView
                     android:id="@+id/tv_row_product_dto_invoice"
@@ -82,7 +82,7 @@
                     android:textColor="@color/primary_text_color"
                     android:layout_marginTop="2dp"
                     android:padding="10dp"
-                    android:text="Not loaded (invoice)" />
+                    android:text="Nie pobrano (faktura)" />
                 <!-- endregion -->
 
                 <!-- region Product Code -->
@@ -93,7 +93,7 @@
                     android:textColor="@color/secondary_text_color"
                     android:layout_marginTop="10dp"
                     android:textSize="14sp"
-                    android:text="Index" />
+                    android:text="Numer indeksu" />
 
                 <TextView
                     android:id="@+id/tv_row_product_dto_code"
@@ -102,7 +102,7 @@
                     android:textColor="@color/primary_text_color"
                     android:layout_marginTop="2dp"
                     android:padding="10dp"
-                    android:text="Not loaded (index)" />
+                    android:text="Nie pobrano  (indeks)" />
                 <!-- endregion -->
 
                 <!-- region Product Stage -->
@@ -113,7 +113,7 @@
                     android:textColor="@color/secondary_text_color"
                     android:layout_marginTop="10dp"
                     android:textSize="14sp"
-                    android:text="Stage" />
+                    android:text="Etap" />
 
                 <TextView
                     android:id="@+id/tv_row_product_dto_stage"
@@ -122,7 +122,7 @@
                     android:textColor="@color/primary_text_color"
                     android:layout_marginTop="2dp"
                     android:padding="10dp"
-                    android:text="Not loaded (stage)" />
+                    android:text="Nie pobrano (etap)" />
                 <!-- endregion -->
 
                 <!-- region Image URL -->
@@ -133,7 +133,7 @@
                     android:textColor="@color/secondary_text_color"
                     android:layout_marginTop="10dp"
                     android:textSize="14sp"
-                    android:text="Image URL" />
+                    android:text="Link do zdjęcia" />
 
                 <TextView
                     android:id="@+id/tv_row_product_dto_image"
@@ -143,7 +143,7 @@
                     android:autoLink="web"
                     android:layout_marginTop="2dp"
                     android:padding="10dp"
-                    android:text="Not loaded (image url)" />
+                    android:text="Nie pobrano (url)" />
                 <!-- endregion -->
 
                 <!-- region Stage spinner -->
@@ -154,7 +154,7 @@
                     android:textColor="@color/secondary_text_color"
                     android:layout_marginTop="10dp"
                     android:textSize="14sp"
-                    android:text="Change stage" />
+                    android:text="Zmień etap" />
 
                 <Spinner
                     android:id="@+id/spinner_product_status"
@@ -175,7 +175,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:background="@drawable/shape_button_rounded"
-                    android:text="Update status in sheet"
+                    android:text="Zapisz zmiany"
                     android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:paddingTop="8dp"

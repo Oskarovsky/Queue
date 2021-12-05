@@ -44,7 +44,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
         val actionBar = supportActionBar
         if (actionBar != null) {
-            actionBar.title = "Display options"
+            actionBar.title = "Pokaż dostępne opcje"
         }
     }
 

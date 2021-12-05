@@ -30,7 +30,7 @@
         android:layout_marginBottom="@dimen/nav_content_margin_bottom"
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:text="User name"/>
+        android:text="Nazwa użytkownika"/>
 
     <View
         android:layout_width="match_parent"
