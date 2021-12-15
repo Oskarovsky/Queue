@@ -116,6 +116,36 @@ class FirebaseUtils {
                             activity.setSheetUrlForRequest(currentSheet)
                             activity.fetchDataFromSheet()
                         }
+                        is GoogleUpdateStageActivity -> {
+                            activity.setSheetUrlForRequest(currentSheet)
+                        }
+                        is GoogleUpdateStageByCodeActivity -> {
+                            activity.setSheetUrlForRequest(currentSheet)
+                        }
+                    }
+                }
+            }.addOnFailureListener {
+                when (activity) {
+                    is SheetActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e("SheetActivity", "Error has occurred during fetching sheet")
+            }
+    }
+
+    fun loadProductInfo(activity: Activity, mOrderNumber: String) {
+        fireStoreDatabase.collection(Constants.SHEETS)
+            .document("1")
+            .get()
+            .addOnSuccessListener { document ->
+                val currentSheet = document.toObject(Sheet::class.java)
+                if (currentSheet != null) {
+                    when (activity) {
+                        is GoogleUpdateStageByCodeActivity -> {
+                            activity.setSheetUrlForRequest(currentSheet)
+                            activity.fetchProductRowFromSheetByCode(mOrderNumber)
+                        }
                     }
                 }
             }.addOnFailureListener {

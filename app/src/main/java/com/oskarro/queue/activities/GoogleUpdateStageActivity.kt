@@ -8,6 +8,8 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.oskarro.queue.R
+import com.oskarro.queue.firebase.FirebaseUtils
+import com.oskarro.queue.model.Sheet
 import com.oskarro.queue.model.Stage
 import com.oskarro.queue.utils.Constants
 import kotlinx.android.synthetic.main.activity_google_read.*
@@ -19,11 +21,15 @@ class GoogleUpdateStageActivity : BaseActivity() {
     lateinit var editProductOrderNumber: EditText
     lateinit var btnSaveToGoogle: Button
 
+    private lateinit var sheetObject: Sheet
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_google_update_stage)
 
         setupActionBar()
+        FirebaseUtils().loadCurrentSheetUrl(this@GoogleUpdateStageActivity)
+
 
         editProductInvoiceNumber = findViewById(R.id.edit_product_invoice_number)
         editProductOrderNumber = findViewById(R.id.edit_product_order_number)
@@ -49,7 +55,7 @@ class GoogleUpdateStageActivity : BaseActivity() {
                 val url = Constants.GOOGLE_SCRIPT
                 val stringRequest = object: StringRequest(
                     Method.POST,
-                    url,
+                    url.plus("?sheetTabName=${sheetObject.tabName}&sheetUrl=${sheetObject.url}"),
                     Response.Listener {
                         finish();
                         startActivity(intent);
@@ -65,8 +71,6 @@ class GoogleUpdateStageActivity : BaseActivity() {
                         params["productOrderNumber"] = editProductOrderNumber.text.toString()
                         params["productInvoiceNumber"] = editProductInvoiceNumber.text.toString()
                         params["productStatus"] = spinnerStatus.selectedItem.toString()
-                        params["sheetUrl"] = "https://docs.google.com/spreadsheets/d/1xeIsOKfrHtC9NvkkXyz5epaHAmuqezqQY8QYgmiJpMg"
-                        params["sheetTabName"] = "Products"
                         return params
                     }
                 }
@@ -87,5 +91,9 @@ class GoogleUpdateStageActivity : BaseActivity() {
         toolbar_product_write_activity.setNavigationOnClickListener{
             startActivity(Intent(this@GoogleUpdateStageActivity, GoogleActivity::class.java))
         }
+    }
+
+    fun setSheetUrlForRequest(sheet: Sheet) {
+        sheetObject = sheet
     }
 }

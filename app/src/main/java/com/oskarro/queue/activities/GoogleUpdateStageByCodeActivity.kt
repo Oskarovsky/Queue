@@ -10,7 +10,9 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.oskarro.queue.R
+import com.oskarro.queue.firebase.FirebaseUtils
 import com.oskarro.queue.model.ProductDto
+import com.oskarro.queue.model.Sheet
 import com.oskarro.queue.model.Stage
 import com.oskarro.queue.utils.Constants
 import com.oskarro.queue.utils.SheetValues
@@ -32,6 +34,7 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
     private lateinit var mOrderNumber: String
     private lateinit var mProgressDialog: Dialog
 
+    private lateinit var sheetObject: Sheet
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,10 +58,8 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
             mOrderNumber = intent.getStringExtra(Constants.ORDER_NUMBER).toString()
             tvProductCodeResult.text = mOrderNumber
             showProgressDialog(resources.getString(R.string.please_wait))
-            fetchProductRowFromSheetByCode(mOrderNumber)
+            FirebaseUtils().loadProductInfo(this@GoogleUpdateStageByCodeActivity, mOrderNumber)
         }
-//        showProgressDialog(resources.getString(R.string.please_wait))
-//        fetchProductRowFromSheetByCode("FPF/6/MWG/11/2021XD0000")
 
         val spinnerStatus: Spinner = findViewById(R.id.spinner_update_status)
         val availableStages = Stage.values().map { it.value }
@@ -75,7 +76,7 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
             val url = Constants.GOOGLE_SCRIPT
             val stringRequest = object: StringRequest(
                 Method.POST,
-                url,
+                url.plus("?sheetTabName=${sheetObject.tabName}&sheetUrl=${sheetObject.url}"),
                 Response.Listener {
                     hideProgressDialog()
                     Toast.makeText(this@GoogleUpdateStageByCodeActivity, "Product stage updated", Toast.LENGTH_SHORT).show()
@@ -110,11 +111,11 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
     }
 
 
-    private fun fetchProductRowFromSheetByCode(code: String) {
+    fun fetchProductRowFromSheetByCode(code: String) {
         val uri = Constants.GOOGLE_SCRIPT + "?requestMethod=BARCODE&productCode=$code"
         val stringRequest = object: StringRequest(
             Method.GET,
-            uri,
+            uri.plus("&sheetTabName=${sheetObject.tabName}&sheetUrl=${sheetObject.url}"),
             Response.Listener { response ->
                 val productJson = JSONObject(response)
                 val dto = ProductDto()
@@ -142,5 +143,9 @@ class GoogleUpdateStageByCodeActivity : BaseActivity() {
         tvProductName.text = productDto.name
         tvProductImageUrl.text = productDto.imageUlr
         Linkify.addLinks(tvProductImageUrl, Linkify.WEB_URLS)
+    }
+
+    fun setSheetUrlForRequest(sheet: Sheet) {
+        sheetObject = sheet
     }
 }
