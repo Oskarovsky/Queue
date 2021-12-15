@@ -5,23 +5,34 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.oskarro.queue.R
 import com.oskarro.queue.firebase.FirebaseUtils
+import com.oskarro.queue.model.ProductDto
 import com.oskarro.queue.model.Sheet
+import com.oskarro.queue.model.Stage
 import com.oskarro.queue.model.User
 import com.oskarro.queue.utils.Constants
+import com.oskarro.queue.utils.SheetValues
 import kotlinx.android.synthetic.main.activity_google.*
 import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.activity_sheet.*
+import org.json.JSONObject
 
 class SheetActivity : BaseActivity() {
 
     lateinit var editGoogleSheetUrl: EditText
     lateinit var editGoogleSheetName: EditText
+
     lateinit var btnUpdateSheet: Button
 
     private lateinit var mSheetDetails: Sheet
+    private var requestQueue: RequestQueue? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +45,8 @@ class SheetActivity : BaseActivity() {
         editGoogleSheetUrl = findViewById(R.id.edit_google_sheet_url)
         editGoogleSheetName = findViewById(R.id.edit_google_sheet_name)
 
+        requestQueue = Volley.newRequestQueue(this@SheetActivity)
+
         btnUpdateSheet.setOnClickListener {
             if (editGoogleSheetUrl.text.toString().trim().isBlank()) {
                 Toast.makeText(this@SheetActivity, "URL field cannot be empty! ", Toast.LENGTH_SHORT).show()
@@ -45,12 +58,12 @@ class SheetActivity : BaseActivity() {
     }
 
     private fun setupActionBar() {
-        setSupportActionBar(toolbar_google_activity)
+        setSupportActionBar(toolbar_sheet_activity)
         val actionBar = supportActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24p)
-            actionBar.title = resources.getString(R.string.main_board_title)
+            actionBar.title = resources.getString(R.string.sheet_title)
         }
         toolbar_sheet_activity.setNavigationOnClickListener { onBackPressed() }
     }
@@ -80,6 +93,32 @@ class SheetActivity : BaseActivity() {
             Toast.makeText(this,"Nothing as been updated!",Toast.LENGTH_SHORT).show()
             hideProgressDialog()
         }
+    }
+
+    // TODO
+    fun checkSheet(url: String, tabName: String, sheetHashMap: HashMap<String, Any>) {
+        val stringRequest = object: StringRequest(
+            Method.GET,
+            url.plus("?sheetTabName=${tabName}&sheetUrl=${url}"),
+            Response.Listener { response ->
+                val jsonObj = JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1))
+                val productJson = jsonObj.getJSONArray(SheetValues.PRODUCTS)
+                FirebaseUtils().updateSheetUrl(this, sheetHashMap)
+                hideProgressDialog()
+            },
+            Response.ErrorListener {
+                hideProgressDialog()
+                Toast.makeText(this@SheetActivity, "Error has occurred!", Toast.LENGTH_SHORT).show()
+            }
+        ) {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                params["requestMethod"] = SheetValues.MULTI_REQUEST
+                return params
+            }
+
+        }
+        requestQueue?.add(stringRequest)
     }
 
     fun sheetUrlUpdateSuccess(){

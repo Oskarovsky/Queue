@@ -51,6 +51,7 @@
     <string name="select_due_date">Select due date</string>
 
     <string name="main_board_title">Strefa produktów</string>
+    <string name="sheet_title">Arkusz google</string>
     <string name="product_list_board_title">Wszystkie produkty</string>
     <string name="product_stage_board_title">Panel produktu</string>
     <string name="product_details_board_title">Szczegóły produktu</string>
