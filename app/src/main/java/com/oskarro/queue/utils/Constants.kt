@@ -3,6 +3,7 @@ package com.oskarro.queue.utils
 object Constants {
 
     const val USERS: String = "users"
+    const val SHEETS: String = "sheets"
 
     const val BOARDS: String = "boards"
 
@@ -11,6 +12,11 @@ object Constants {
     const val MOBILE: String = "mobile"
     const val IMAGE_URL: String = "imageUrl"
     const val ASSIGNED_TO: String = "assignedTo"
+
+
+    const val SHEET_URL: String = "sheetUrl"
+    const val SHEET_NAME: String = "sheetName"
+    const val SHEET_ACTIVE: String = "isActive"
 
     const val DOCUMENT_ID: String = "documentId"
     const val STAGE: String = "stage"

@@ -12,8 +12,10 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.oskarro.queue.R
 import com.oskarro.queue.adapters.ProductRowsAdapter
+import com.oskarro.queue.firebase.FirebaseUtils
 import com.oskarro.queue.model.Board
 import com.oskarro.queue.model.ProductDto
+import com.oskarro.queue.model.Sheet
 import com.oskarro.queue.model.Stage
 import com.oskarro.queue.utils.Constants
 import com.oskarro.queue.utils.SheetValues
@@ -29,6 +31,9 @@ class GoogleReadActivity : BaseActivity() {
 
     private var requestQueue: RequestQueue? = null
 
+    private lateinit var sheetUrl: String
+    private lateinit var sheetName: String
+
     val arrayProducts: ArrayList<ProductDto> = ArrayList();
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +41,8 @@ class GoogleReadActivity : BaseActivity() {
         setContentView(R.layout.activity_google_read)
 
         setupActionBar()
+
+        FirebaseUtils().loadCurrentSheetUrl(activity = this)
 
         showProgressDialog(resources.getString(R.string.please_wait))
         requestQueue = Volley.newRequestQueue(this@GoogleReadActivity)
@@ -74,6 +81,8 @@ class GoogleReadActivity : BaseActivity() {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
                 params["requestMethod"] = MULTI_REQUEST
+                params["sheet"] = sheetName
+                params["ss"] = sheetUrl
                 return params
             }
 
@@ -118,6 +127,11 @@ class GoogleReadActivity : BaseActivity() {
         toolbar_product_read_activity.setNavigationOnClickListener{
             startActivity(Intent(this@GoogleReadActivity, GoogleActivity::class.java))
         }
+    }
+
+    fun setSheetUrlForRequest(sheet: Sheet) {
+        sheetUrl = sheet.url
+        sheetName = sheet.name
     }
 
 }

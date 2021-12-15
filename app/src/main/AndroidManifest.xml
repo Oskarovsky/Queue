@@ -17,6 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Queue">
         <activity
+            android:name=".activities.SheetActivity"
+            android:exported="false"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.Queue.NoActionBar" />
+        <activity
             android:name=".activities.BarcodeScannerActivity"
             android:exported="true" />
         <activity
@@ -46,21 +51,6 @@
             android:theme="@style/Theme.Queue.NoActionBar" />
         <activity
             android:name=".activities.ProductDetailsActivity"
-            android:exported="false"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/Theme.Queue.NoActionBar" />
-        <activity
-            android:name=".activities.MembersActivity"
-            android:exported="false"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/Theme.Queue.NoActionBar" />
-        <activity
-            android:name=".activities.ProcessListActivity"
-            android:exported="false"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/Theme.Queue.NoActionBar" />
-        <activity
-            android:name=".activities.CreateBoardActivity"
             android:exported="false"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.Queue.NoActionBar" />

@@ -22,6 +22,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         const val MY_PROFILE_REQUEST_CODE : Int = 11
         const val CREATE_BOARD_REQUEST_CODE : Int = 12
         const val READ_DATA_REQUEST_CODE : Int = 13
+        const val GOOGLE_SHEET_REQUEST_CODE : Int = 14
     }
 
     private lateinit var mUserName: String
@@ -87,6 +88,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
             R.id.nav_read_data -> {
                 startActivityForResult(Intent(this, GoogleActivity::class.java), READ_DATA_REQUEST_CODE)
+            }
+            R.id.nav_set_excel -> {
+                startActivityForResult(Intent(this, SheetActivity::class.java), GOOGLE_SHEET_REQUEST_CODE)
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)

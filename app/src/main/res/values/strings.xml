@@ -28,6 +28,7 @@
     <string name="nav_my_profile">Pokaż profil</string>
     <string name="nav_sign_out">Wyloguj się</string>
     <string name="nav_read_data">Strefa produktów</string>
+    <string name="nav_set_excel">Arkusze danych</string>
 
     <string name="mobile">Mobile</string>
     <string name="update">UPDATE</string>

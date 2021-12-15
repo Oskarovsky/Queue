@@ -14,6 +14,10 @@
             android:id="@+id/nav_read_data"
             android:icon="@drawable/ic_product_area"
             android:title="@string/nav_read_data"/>
+        <item
+            android:id="@+id/nav_set_excel"
+            android:icon="@drawable/ic_baseline_content_paste_24"
+            android:title="@string/nav_set_excel"/>
     </group>
 
 </menu>

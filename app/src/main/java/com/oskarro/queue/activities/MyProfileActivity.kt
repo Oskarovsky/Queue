@@ -65,17 +65,17 @@ class MyProfileActivity : BaseActivity() {
         val userHashMap = HashMap<String, Any>()
         var anyChangesMade : Boolean = false
 
-        if(mProfileImageURL.isNotEmpty() && mProfileImageURL != mUserDetails.imageUrl){
+        if (mProfileImageURL.isNotEmpty() && mProfileImageURL != mUserDetails.imageUrl) {
             userHashMap[Constants.IMAGE_URL] = mProfileImageURL
             anyChangesMade = true
         }
 
-        if(my_profile_name_et.text.toString() != mUserDetails.name){
+        if (my_profile_name_et.text.toString() != mUserDetails.name) {
             userHashMap[Constants.NAME] = my_profile_name_et.text.toString()
             anyChangesMade = true
         }
 
-        if(my_profile_mobile_et.text.toString() != mUserDetails.mobile.toString()){
+        if (my_profile_mobile_et.text.toString() != mUserDetails.mobile.toString()) {
             userHashMap[Constants.MOBILE] = my_profile_mobile_et.text.toString().toLong()
             anyChangesMade = true
         }
