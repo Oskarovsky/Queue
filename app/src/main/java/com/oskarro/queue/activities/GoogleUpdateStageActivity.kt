@@ -65,6 +65,8 @@ class GoogleUpdateStageActivity : BaseActivity() {
                         params["productOrderNumber"] = editProductOrderNumber.text.toString()
                         params["productInvoiceNumber"] = editProductInvoiceNumber.text.toString()
                         params["productStatus"] = spinnerStatus.selectedItem.toString()
+                        params["sheetUrl"] = "https://docs.google.com/spreadsheets/d/1xeIsOKfrHtC9NvkkXyz5epaHAmuqezqQY8QYgmiJpMg"
+                        params["sheetTabName"] = "Products"
                         return params
                     }
                 }

@@ -28,7 +28,6 @@ class SheetActivity : BaseActivity() {
         setContentView(R.layout.activity_sheet)
 
         setupActionBar()
-
         FirebaseUtils().loadCurrentSheetUrl(this)
 
         btnUpdateSheet = findViewById(R.id.btn_change_sheet)
@@ -60,17 +59,17 @@ class SheetActivity : BaseActivity() {
         mSheetDetails = sheet
 
         edit_google_sheet_url.setText(mSheetDetails.url)
-        edit_google_sheet_name.setText(mSheetDetails.name)
-
+        edit_google_sheet_name.setText(mSheetDetails.tabName)
     }
 
     private fun updateSheetUrl() {
         val sheetHashMap = HashMap<String, Any>()
         var anyChangesMade = false
 
-        if (edit_google_sheet_url.text.toString() != mSheetDetails.url) {
+        if (edit_google_sheet_url.text.toString() != mSheetDetails.url || edit_google_sheet_name.text.toString() != mSheetDetails.tabName) {
             sheetHashMap[Constants.SHEET_URL] = edit_google_sheet_url.text.toString()
             sheetHashMap[Constants.SHEET_NAME] = edit_google_sheet_name.text.toString()
+            sheetHashMap[Constants.SHEET_TAB_NAME] = edit_google_sheet_name.text.toString()
             sheetHashMap[Constants.SHEET_ACTIVE] = true
             anyChangesMade = true
         }

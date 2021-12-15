@@ -12,6 +12,7 @@ import com.oskarro.queue.model.User
 import com.oskarro.queue.utils.Constants
 
 class FirebaseUtils {
+
     private val fireStoreDatabase = FirebaseFirestore.getInstance()
 
     fun registerUser(activity: SignUpActivity, userInfo: User) {
@@ -109,12 +110,11 @@ class FirebaseUtils {
                 if (currentSheet != null) {
                     when (activity) {
                         is SheetActivity -> {
-                            Log.d("SHEET", currentSheet.toString())
                             activity.setSheetUrlInUI(currentSheet)
                         }
                         is GoogleReadActivity -> {
-                            Log.d("SHEET 2", currentSheet.toString())
                             activity.setSheetUrlForRequest(currentSheet)
+                            activity.fetchDataFromSheet()
                         }
                     }
                 }
@@ -124,7 +124,7 @@ class FirebaseUtils {
                         activity.hideProgressDialog()
                     }
                 }
-                Log.e("SheetActivity", "Error has occurred during registration")
+                Log.e("SheetActivity", "Error has occurred during fetching sheet")
             }
     }
 

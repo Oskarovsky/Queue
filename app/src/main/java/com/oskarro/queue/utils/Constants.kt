@@ -14,8 +14,9 @@ object Constants {
     const val ASSIGNED_TO: String = "assignedTo"
 
 
-    const val SHEET_URL: String = "sheetUrl"
-    const val SHEET_NAME: String = "sheetName"
+    const val SHEET_URL: String = "url"
+    const val SHEET_NAME: String = "name"
+    const val SHEET_TAB_NAME: String = "tabName"
     const val SHEET_ACTIVE: String = "isActive"
 
     const val DOCUMENT_ID: String = "documentId"
@@ -36,6 +37,6 @@ object Constants {
     const val PROCESS_LIST_ITEM_POSITION: String = "processListItemPosition"
     const val PRODUCT_LIST_ITEM_POSITION: String = "productListItemPosition"
 
-    const val GOOGLE_SCRIPT: String = "https://script.google.com/macros/s/AKfycbwx1C0jVgL5CekaJ5ndMzjGtmgF0gI67ax27Rp2mzpLf2UjTYENLz1X0zCV-CnpwYk/exec"
+    const val GOOGLE_SCRIPT: String = "https://script.google.com/macros/s/AKfycbzQwwp2AanNII5doAbK-UAc3RqIGHOGohU4u_HxTCTCzEG_UPTIJkZbxUKomOA6W2iP/exec"
 
 }
